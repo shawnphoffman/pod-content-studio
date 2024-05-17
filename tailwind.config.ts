@@ -6,8 +6,16 @@ const config: Config = {
 		'./sanity/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
+		// Flowbite
+		'./node_modules/flowbite/**/*.js',
 	],
 	theme: {},
-	plugins: [require('@tailwindcss/typography')],
+
+	darkMode: 'media',
+	plugins: [
+		//
+		require('@tailwindcss/typography'),
+		require('flowbite/plugin'),
+	],
 }
 export default config
