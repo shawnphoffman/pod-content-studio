@@ -28,7 +28,14 @@ export const postBySlugQuery = groq`
   ${postFields}
 }
 `
-
+// =======================
+// LIST PAGE QUERIES
+// =======================
 export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)]`
+export const AUTHORS_QUERY = groq`*[_type == "author" && defined(slug)]`
+export const AWARDS_QUERY = groq`*[_type == "award"]`
 
+// =======================
+// TODO CHANGE THESE
+// =======================
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]`
