@@ -1,0 +1,73 @@
+/* BASELINE */
+.portableText {
+	@apply text-lg leading-relaxed;
+}
+
+.portableText p,
+.portableText ul,
+.portableText ol,
+.portableText blockquote {
+	@apply my-6;
+}
+
+.portableText {
+	/* ================== */
+	/* HEADINGS */
+	/* ================== */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply mb-4 leading-snug font-bold;
+	}
+	h1 {
+		@apply mt-12 text-4xl;
+		@apply md:text-5xl;
+		&:first-child {
+			@apply mt-0;
+		}
+	}
+	h2 {
+		@apply mt-10 text-3xl;
+		@apply md:text-4xl;
+	}
+	h3 {
+		@apply mt-8 text-2xl;
+		@apply md:text-3xl;
+	}
+	h4 {
+		@apply mt-6 text-xl;
+		@apply md:text-2xl;
+	}
+
+	/* ================== */
+	/* TEXT */
+	/* ================== */
+	blockquote {
+		@apply p-4 my-4 border-s-4 border-sky-500 bg-zinc-900/75 text-xl italic font-medium leading-relaxed text-white;
+	}
+
+	/* ================== */
+	/* LISTS */
+	/* ================== */
+	ul,
+	ol {
+		/* @apply space-y-1 text-zinc-100 list-inside; */
+		@apply space-y-1 list-inside;
+	}
+	ul {
+		@apply list-disc;
+	}
+	ol {
+		@apply list-decimal;
+	}
+
+	/* ================== */
+	/* LINKS */
+	/* ================== */
+	a {
+		@apply text-sky-500;
+	}
+}
