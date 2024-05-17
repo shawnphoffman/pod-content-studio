@@ -1,5 +1,5 @@
 // ./components/Post.tsx
-
+import { Suspense } from 'react'
 import Image from 'next/image'
 import { PortableText, type PortableTextReactComponents } from '@portabletext/react'
 import imageUrlBuilder from '@sanity/image-url'
@@ -22,6 +22,17 @@ const myPortableTextComponents: Partial<PortableTextReactComponents> = {
 			const match = url.match(/[?&]v=([^&]+)/)
 			const videoId = match ? match[1] : null
 			return <YoutubeEmbed videoId={videoId} />
+		},
+		gallery: ({ value }) => {
+			return (
+				<div className="grid items-center justify-center grid-cols-2 gap-4 md:grid-cols-3">
+					{value.images.map((i: any) => (
+						<Suspense key={i._key}>
+							<PostImage className="h-auto max-w-full rounded-lg" {...i} />
+						</Suspense>
+					))}
+				</div>
+			)
 		},
 	},
 }

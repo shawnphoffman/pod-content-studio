@@ -11,6 +11,7 @@ export default defineType({
 			name: 'name',
 			title: 'Name',
 			type: 'string',
+			validation: rule => rule.required(),
 		}),
 		defineField({
 			name: 'slug',
@@ -19,7 +20,9 @@ export default defineType({
 			options: {
 				source: 'name',
 				maxLength: 96,
+				isUnique: (value, context) => context.defaultIsUnique(value, context),
 			},
+			validation: rule => rule.required(),
 		}),
 		defineField({
 			name: 'image',
@@ -35,20 +38,21 @@ export default defineType({
 					title: 'Alternative Text',
 				},
 			],
+			validation: rule => rule.required(),
 		}),
-		defineField({
-			name: 'bio',
-			title: 'Bio',
-			type: 'array',
-			of: [
-				{
-					title: 'Block',
-					type: 'block',
-					styles: [{ title: 'Normal', value: 'normal' }],
-					lists: [],
-				},
-			],
-		}),
+		// defineField({
+		// 	name: 'bio',
+		// 	title: 'Bio',
+		// 	type: 'array',
+		// 	of: [
+		// 		{
+		// 			title: 'Block',
+		// 			type: 'block',
+		// 			styles: [{ title: 'Normal', value: 'normal' }],
+		// 			lists: [],
+		// 		},
+		// 	],
+		// }),
 	],
 	preview: {
 		select: {

@@ -1,4 +1,7 @@
+import { ImageIcon } from '@sanity/icons'
 import { defineArrayMember, defineType } from 'sanity'
+
+import { H2Decorator, H3Decorator, H4Decorator, QuoteDecorator } from '@/components/studio/decorators/BlockContent'
 
 export default defineType({
 	title: 'Block Content',
@@ -11,10 +14,10 @@ export default defineType({
 			styles: [
 				{ title: 'Normal', value: 'normal' },
 				// { title: 'Heading 1', value: 'h1' },
-				{ title: 'Heading 2', value: 'h2' },
-				{ title: 'Heading 3', value: 'h3' },
-				{ title: 'Heading 4', value: 'h4' },
-				{ title: 'Quote', value: 'blockquote' },
+				{ title: 'Heading 2', value: 'h2', component: H2Decorator },
+				{ title: 'Heading 3', value: 'h3', component: H3Decorator },
+				{ title: 'Heading 4', value: 'h4', component: H4Decorator },
+				{ title: 'Quote', value: 'blockquote', component: QuoteDecorator },
 			],
 			lists: [
 				{ title: 'Bullet', value: 'bullet' },
@@ -49,6 +52,7 @@ export default defineType({
 		//
 		defineArrayMember({
 			type: 'image',
+			icon: ImageIcon,
 			options: { hotspot: true },
 			fields: [
 				{
@@ -67,6 +71,10 @@ export default defineType({
 		//
 		defineArrayMember({
 			type: 'youtube',
+		}),
+		//
+		defineArrayMember({
+			type: 'gallery',
 		}),
 	],
 })

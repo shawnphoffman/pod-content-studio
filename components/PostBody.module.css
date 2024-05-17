@@ -14,31 +14,21 @@
 	/* ================== */
 	/* HEADINGS */
 	/* ================== */
-	h1,
 	h2,
 	h3,
-	h4,
-	h5,
-	h6 {
-		@apply mb-4 leading-snug font-bold;
-	}
-	h1 {
-		@apply mt-12 text-4xl;
-		@apply md:text-5xl;
-		&:first-child {
-			@apply mt-0;
-		}
+	h4 {
+		@apply mb-4 font-bold leading-snug;
 	}
 	h2 {
-		@apply mt-10 text-3xl;
+		@apply mt-10 text-3xl text-red-600;
 		@apply md:text-4xl;
 	}
 	h3 {
-		@apply mt-8 text-2xl;
+		@apply mt-8 text-2xl text-yellow-400;
 		@apply md:text-3xl;
 	}
 	h4 {
-		@apply mt-6 text-xl;
+		@apply mt-6 text-xl text-sky-400;
 		@apply md:text-2xl;
 	}
 
@@ -46,7 +36,7 @@
 	/* TEXT */
 	/* ================== */
 	blockquote {
-		@apply p-4 my-4 border-s-4 border-sky-500 bg-zinc-900/75 text-xl italic font-medium leading-relaxed text-white;
+		@apply p-4 my-4 text-xl italic font-medium leading-relaxed text-white border-s-4 border-sky-500 bg-zinc-900/75;
 	}
 
 	/* ================== */
@@ -54,8 +44,7 @@
 	/* ================== */
 	ul,
 	ol {
-		/* @apply space-y-1 text-zinc-100 list-inside; */
-		@apply space-y-1 list-inside;
+		@apply space-y-1 list-inside text-zinc-100;
 	}
 	ul {
 		@apply list-disc;
@@ -68,6 +57,6 @@
 	/* LINKS */
 	/* ================== */
 	a {
-		@apply text-sky-500;
+		@apply text-sky-400;
 	}
 }
