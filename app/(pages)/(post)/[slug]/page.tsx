@@ -1,9 +1,10 @@
-// ./app/(blog)/[slug]/page.tsx
-
+import { faLeft } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { QueryParams, SanityDocument } from 'next-sanity'
 
-import Post from '@/components/Post'
+import Post from '@/components/posts/Post'
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { POST_QUERY, POSTS_QUERY } from '@/lib/sanity/sanity.queries'
 
@@ -24,5 +25,14 @@ export default async function Page({ params }: { params: QueryParams }) {
 	if (!post) {
 		return notFound()
 	}
-	return <Post post={post} />
+	return (
+		<div>
+			<h1>Post Preview:</h1>
+			<Link href="/" className="flex flex-row gap-2 items-center text-sky-400 hover:text-yellow-400">
+				<FontAwesomeIcon icon={faLeft} />
+				<span>Back to Posts</span>
+			</Link>
+			<Post post={post} />
+		</div>
+	)
 }

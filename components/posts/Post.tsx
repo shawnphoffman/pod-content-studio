@@ -9,7 +9,10 @@ import PostImage from '@/components/portableText/PostImage'
 import YoutubeEmbed from '@/components/portableText/YoutubeEmbed'
 import { dataset, projectId } from '@/lib/sanity/sanity.env'
 
-import styles from './PostBody.module.css'
+import styles from './Post.module.css'
+import PostAuthor from './PostAuthor'
+import PostCoverImage from './PostCoverImage'
+import PostTitle from './PostTitle'
 
 const urlFor = (source: any) => imageUrlBuilder({ projectId, dataset }).image(source)
 
@@ -42,24 +45,20 @@ export default function Post({ post }: { post: SanityDocument }) {
 	const { title, mainImage, body } = post
 
 	return (
-		// <main className="container mx-auto prose prose-lg p-4">
-		<main className="container mx-auto  p-4">
-			{title ? <h1>{title}</h1> : null}
-			{mainImage ? (
-				<Image
-					// className="float-left m-0 w-1/3 mr-4 rounded-lg"
-					className=" m-0 w-1/3 mr-4 rounded-lg"
-					src={urlFor(mainImage).width(300).height(300).quality(80).url()}
-					width={300}
-					height={300}
-					alt={mainImage.alt || ''}
-				/>
-			) : null}
-			{body ? (
-				<div className={`mx-auto max-w-3xl ${styles.portableText}`}>
-					<PortableText value={body} components={myPortableTextComponents} />
-				</div>
-			) : null}
-		</main>
+		<div className="flex flex-col items-center justify-center gap-4 border border-zinc-500 m-4">
+			<PostTitle>{title}</PostTitle>
+
+			<PostAuthor name={post.author?.name} image={post.author?.image} />
+
+			<PostCoverImage title={title} image={mainImage} priority />
+
+			<article className="w-full mb-8 text-left rounded-lg bg-zinc-950/90">
+				{body ? (
+					<div className={`mx-auto max-w-3xl ${styles.portableText}`}>
+						<PortableText value={body} components={myPortableTextComponents} />
+					</div>
+				) : null}
+			</article>
+		</div>
 	)
 }

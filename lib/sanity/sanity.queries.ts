@@ -1,5 +1,7 @@
 import { groq } from 'next-sanity'
 
+// TODO - CACHE THESE QUERIES!!!
+
 const postFields = groq`
   _id,
   _updatedAt,
@@ -13,29 +15,19 @@ const postFields = groq`
 	"categories": categories[]->title,
 `
 
-export const postsListQuery = groq`
-*[_type == "post"] | order(date desc, publishedAt desc) {
-  ${postFields}
-}`
-
-export const postSlugsQuery = groq`
-*[_type == "post" && defined(slug.current)][].slug.current
-`
-
-export const postBySlugQuery = groq`
-*[_type == "post" && slug.current == $slug][0] {
-	body,
-  ${postFields}
-}
-`
 // =======================
 // LIST PAGE QUERIES
 // =======================
-export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)]`
-export const AUTHORS_QUERY = groq`*[_type == "author" && defined(slug)]`
+export const POSTS_QUERY = groq`*[_type == "post"] | order(date desc, publishedAt desc) {
+  ${postFields}
+}`
+export const AUTHORS_QUERY = groq`*[_type == "author"]`
 export const AWARDS_QUERY = groq`*[_type == "award"]`
 
 // =======================
-// TODO CHANGE THESE
+// ITEM PAGE QUERIES
 // =======================
-export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]`
+export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
+	body,
+  ${postFields}
+}`

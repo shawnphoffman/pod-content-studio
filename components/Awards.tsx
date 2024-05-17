@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import { SanityDocument } from 'next-sanity'
 
-export default function Awards({ awards }: { awards: SanityDocument[] }) {
+import { sanityFetch } from '@/lib/sanity/sanity.fetch'
+import { AWARDS_QUERY } from '@/lib/sanity/sanity.queries'
+
+export default async function Awards() {
+	const awards = await sanityFetch<SanityDocument[]>({
+		query: AWARDS_QUERY,
+	})
 	return (
 		<main className="container mx-auto grid grid-cols-1 divide-y divide-zinc-100 dark:divide-zinc-900">
 			{awards?.length > 0 ? (

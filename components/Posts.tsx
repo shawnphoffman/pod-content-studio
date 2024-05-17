@@ -1,18 +1,29 @@
 import Link from 'next/link'
 import { SanityDocument } from 'next-sanity'
 
-export default function Posts({ posts }: { posts: SanityDocument[] }) {
+import { sanityFetch } from '@/lib/sanity/sanity.fetch'
+import { POSTS_QUERY } from '@/lib/sanity/sanity.queries'
+
+import PostRow from './posts/PostRow'
+
+export default async function Posts() {
+	const posts = await sanityFetch<SanityDocument[]>({
+		query: POSTS_QUERY,
+	})
 	return (
-		<main className="container mx-auto grid grid-cols-1 divide-y divide-zinc-100 dark:divide-zinc-900">
+		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-100 dark:divide-zinc-900">
 			{posts?.length > 0 ? (
-				posts.map(post => (
-					<Link key={post._id} href={post.slug.current}>
-						<h3 className="p-4 text-lg font-medium hover:bg-sky-50 dark:hover:bg-sky-950">{post.title}</h3>
-					</Link>
-				))
+				posts.map(post => {
+					const { author, mainImage, publishedAt, slug, _id, title } = post
+					return (
+						<Link key={post._id} href={slug}>
+							<PostRow key={_id} mainImage={mainImage} title={title} publishedAt={publishedAt} author={author} />
+						</Link>
+					)
+				})
 			) : (
 				<div className="p-4 text-red-500">No posts found</div>
 			)}
-		</main>
+		</div>
 	)
 }
