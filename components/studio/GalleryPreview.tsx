@@ -1,8 +1,8 @@
 import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageObject,SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { SanityImageObject, SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { Flex, Stack } from '@sanity/ui'
 
-import { client } from '@/sanity/sanity.client'
+import { client } from '@/lib/sanity/sanity.client'
 
 // import { urlFor } from './image-url-builder'
 

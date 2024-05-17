@@ -1,7 +1,7 @@
 // ./sanity/lib/fetch.ts
 
-import type { ClientPerspective, QueryParams } from 'next-sanity'
 import { draftMode } from 'next/headers'
+import type { ClientPerspective, QueryParams } from 'next-sanity'
 
 import { client } from './sanity.client'
 import { token } from './sanity.token'

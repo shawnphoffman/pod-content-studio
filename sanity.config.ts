@@ -6,12 +6,12 @@ import { RocketIcon } from '@sanity/icons'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
+
 // import { presentationTool, defineDocuments } from 'sanity/presentation'
 // import { locate } from '@/sanity/presentation/locate'
-
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import { apiVersion, dataset, projectId } from './sanity/sanity.env'
-import { schema } from './sanity/schema'
+import { apiVersion, dataset, projectId } from './lib/sanity/sanity.env'
+import { schema } from './lib/sanity/schema'
 
 // const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3001'
 

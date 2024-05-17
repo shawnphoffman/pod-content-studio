@@ -7,7 +7,7 @@ import { SanityDocument } from 'next-sanity'
 
 import PostImage from '@/components/portableText/PostImage'
 import YoutubeEmbed from '@/components/portableText/YoutubeEmbed'
-import { dataset, projectId } from '@/sanity/sanity.env'
+import { dataset, projectId } from '@/lib/sanity/sanity.env'
 
 import styles from './PostBody.module.css'
 

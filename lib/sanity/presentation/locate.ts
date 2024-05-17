@@ -1,7 +1,7 @@
 // ./sanity/presentation/locate.ts
 
-import { DocumentLocationResolver } from 'sanity/presentation'
 import { map } from 'rxjs'
+import { DocumentLocationResolver } from 'sanity/presentation'
 
 // Pass 'context' as the second argument
 export const locate: DocumentLocationResolver = (params, context) => {

@@ -4,7 +4,7 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
 
-import { client as sanityClient } from '@/sanity/sanity.client'
+import { client as sanityClient } from '@/lib/sanity/sanity.client'
 
 interface PostImageProps {
 	asset: SanityImageSource

@@ -4,4 +4,7 @@ module.exports = {
 	rules: {
 		'react/no-unescaped-entities': 'warn',
 	},
+	// overrides: {
+	// 	files: ['**/*.ts', '**/*.tsx'],
+	// },
 }

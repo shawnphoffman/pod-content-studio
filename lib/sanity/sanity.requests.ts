@@ -2,9 +2,9 @@ import 'server-only'
 
 import { type QueryParams } from 'next-sanity'
 
-import { client as sanityClient } from '@/sanity/sanity.client'
-import { postBySlugQuery, postsListQuery, postSlugsQuery } from '@/sanity/sanity.queries'
-import { type Post } from '@/sanity/sanity.types'
+import { client as sanityClient } from '@/lib/sanity/sanity.client'
+import { postBySlugQuery, postsListQuery, postSlugsQuery } from '@/lib/sanity/sanity.queries'
+import { type Post } from '@/lib/sanity/sanity.types'
 
 type SanityFetchProps = {
 	query: string
