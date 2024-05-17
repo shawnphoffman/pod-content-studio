@@ -1,8 +1,5 @@
-import { faBars } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SanityDocument } from 'next-sanity'
 
-import Sidebar from '@/components/core/Sidebar'
 import Posts from '@/components/Posts'
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { POSTS_QUERY } from '@/lib/sanity/sanity.queries'
