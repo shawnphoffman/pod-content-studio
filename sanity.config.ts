@@ -7,6 +7,7 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
+import ToolMenu from './components/studio/enhancements/ToolMenu'
 // import { presentationTool, defineDocuments } from 'sanity/presentation'
 // import { locate } from '@/sanity/presentation/locate'
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
@@ -28,6 +29,11 @@ export default defineConfig({
 
 	// MISC
 	schema,
+	studio: {
+		components: {
+			toolMenu: ToolMenu,
+		},
+	},
 	plugins: [
 		structureTool(),
 		// Vision is a tool that lets you query your content with GROQ in the studio

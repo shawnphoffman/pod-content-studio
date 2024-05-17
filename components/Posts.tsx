@@ -11,7 +11,7 @@ export default async function Posts() {
 		query: POSTS_QUERY,
 	})
 	return (
-		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-100 dark:divide-zinc-900">
+		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-700">
 			{posts?.length > 0 ? (
 				posts.map(post => {
 					const { author, mainImage, publishedAt, slug, _id, title } = post
