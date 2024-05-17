@@ -1,14 +1,15 @@
 // ./components/Post.tsx
 import { Suspense } from 'react'
-import Image from 'next/image'
 import { PortableText, type PortableTextReactComponents } from '@portabletext/react'
 import imageUrlBuilder from '@sanity/image-url'
+import Image from 'next/image'
 import { SanityDocument } from 'next-sanity'
+
 import PostImage from '@/components/portableText/PostImage'
 import YoutubeEmbed from '@/components/portableText/YoutubeEmbed'
-import styles from './PostBody.module.css'
-
 import { dataset, projectId } from '@/sanity/sanity.env'
+
+import styles from './PostBody.module.css'
 
 const urlFor = (source: any) => imageUrlBuilder({ projectId, dataset }).image(source)
 

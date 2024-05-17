@@ -2,7 +2,11 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 
-const LazyYoutube = ({ videoId }) => {
+type LazyYoutubeProps = {
+	videoId: string
+}
+
+const LazyYoutube = ({ videoId }: LazyYoutubeProps) => {
 	const [load, setLoad] = useState(false)
 	const videoRef = useRef(null)
 

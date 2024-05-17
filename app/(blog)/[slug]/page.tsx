@@ -1,12 +1,11 @@
 // ./app/(blog)/[slug]/page.tsx
 
-import { QueryParams, SanityDocument } from 'next-sanity'
 import { notFound } from 'next/navigation'
+import { QueryParams, SanityDocument } from 'next-sanity'
 
-import { POSTS_QUERY, POST_QUERY } from '@/sanity/sanity.queries'
 import Post from '@/components/Post'
-
 import { sanityFetch } from '@/sanity/sanity.fetch'
+import { POST_QUERY,POSTS_QUERY } from '@/sanity/sanity.queries'
 
 export async function generateStaticParams() {
 	const posts = await sanityFetch<SanityDocument[]>({

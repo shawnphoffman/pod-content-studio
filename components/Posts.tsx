@@ -1,5 +1,5 @@
-import { SanityDocument } from 'next-sanity'
 import Link from 'next/link'
+import { SanityDocument } from 'next-sanity'
 
 export default function Posts({ posts }: { posts: SanityDocument[] }) {
 	return (
