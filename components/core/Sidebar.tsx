@@ -1,5 +1,5 @@
 import { faShawn } from '@awesome.me/kit-50792a5d55/icons/kit/custom'
-import { faAward, faBars, faNewspaper, faPenToSquare, faUser } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
+import { faAward, faBars, faNewspaper, faPenToSquare, faPodcast, faUser } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
@@ -47,6 +47,12 @@ export default function Sidebar() {
 							<Link href="/" className="sidebar-item group">
 								<FontAwesomeIcon icon={faNewspaper} fixedWidth />
 								<span>Posts</span>
+							</Link>
+						</li>
+						<li>
+							<Link href="/podcast" className="sidebar-item group">
+								<FontAwesomeIcon icon={faPodcast} fixedWidth />
+								<span>Podcasts</span>
 							</Link>
 						</li>
 						<li>

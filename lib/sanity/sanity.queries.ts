@@ -21,6 +21,7 @@ const postFields = groq`
 export const POSTS_QUERY = groq`*[_type == "post"] | order(date desc, publishedAt desc) {
   ${postFields}
 }`
+export const PODCASTS_QUERY = groq`*[_type == "category"]`
 export const AUTHORS_QUERY = groq`*[_type == "author"]`
 export const AWARDS_QUERY = groq`*[_type == "award"]`
 
