@@ -1,5 +1,5 @@
 export const QuoteDecorator = props => (
-	<blockquote className="p-4 text-xl italic font-medium leading-relaxed text-white border-s-4 border-sky-500 bg-zinc-900/75">
+	<blockquote className="py-2 px-3 text-lg italic font-semibold leading-tight text-white/90 border-s-8 border-sky-500 bg-zinc-900/75 outline outline-zinc-500/30 rounded-sm">
 		{props.children}
 	</blockquote>
 )

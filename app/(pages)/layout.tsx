@@ -1,4 +1,4 @@
-import '@/app/global.css'
+import './pages.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import { Suspense } from 'react'
@@ -11,7 +11,7 @@ import Script from 'next/script'
 import Sidebar from '@/components/core/Sidebar'
 
 export const metadata: Metadata = {
-	title: 'Pod Content Studio',
+	title: `Pod Content Preview`,
 	description: 'Where good content is just out of reach',
 }
 
