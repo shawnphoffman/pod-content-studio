@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import { SanityDocument } from 'next-sanity'
 
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { AUTHORS_QUERY } from '@/lib/sanity/sanity.queries'
+import { Author } from '@/lib/sanity/sanity.types'
 
 import AuthorRow from './authors/AuthorRow'
 
 export default async function Authors() {
-	const authors = await sanityFetch<SanityDocument[]>({
+	const authors = await sanityFetch<Author[]>({
 		query: AUTHORS_QUERY,
 	})
 	return (

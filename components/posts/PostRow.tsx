@@ -1,12 +1,12 @@
 import Image from 'next/image'
 
-import { urlFor } from '@/lib/sanity/sanity.image'
+import { urlFor, urlForSanityImage } from '@/lib/sanity/sanity.image'
 
 import PostAuthor from './PostAuthor'
 import PostAuthorAvatar from './PostAuthorAvatar'
 import PostDate from './PostDate'
 
-export default function PostRow({ mainImage, title, publishedAt, author }) {
+export default function PostRow({ mainImage, title, publishedAt, author, podcasts }) {
 	return (
 		<div className="flex flex-col items-center justify-between gap-2 p-4 py-2 transition-all rounded-lg hover:bg-sky-950/50 md:flex-row md:gap-4">
 			{mainImage && (
@@ -19,7 +19,7 @@ export default function PostRow({ mainImage, title, publishedAt, author }) {
 					sizes="100vw"
 				/>
 			)}
-			<div className="flex flex-row w-full gap-2">
+			<div className="flex flex-row flex-1 gap-2">
 				<div className="flex items-center justify-center md:hidden">
 					<PostAuthorAvatar name={author?.name} image={author?.image} />
 				</div>
@@ -27,6 +27,21 @@ export default function PostRow({ mainImage, title, publishedAt, author }) {
 					<span className="text-xl font-bold transition-colors group-hover:text-sky-400">{title}</span>
 					<PostDate dateString={publishedAt} />
 				</div>
+			</div>
+			<div className="flex -space-x-4 rtl:space-x-reverse flex-1 justify-center items-center">
+				{podcasts &&
+					podcasts?.map(podcast => {
+						return (
+							<Image
+								key={podcast?.image?.asset?._ref}
+								src={urlForSanityImage(podcast.image).height(96).width(96).fit('crop').url()}
+								className="w-12 h-12 border-2 rounded-full"
+								height={96}
+								width={96}
+								alt={podcast.alt}
+							/>
+						)
+					})}
 			</div>
 			<div className="hidden md:flex">
 				<PostAuthor name={author?.name} image={author?.image} />

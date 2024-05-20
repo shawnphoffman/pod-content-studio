@@ -12,7 +12,7 @@ const postFields = groq`
   mainImage,
   "slug": slug.current,
   "author": author->{name, image},
-	"categories": categories[]->title,
+	"categories": categories[]->{title, image},
 `
 
 // =======================

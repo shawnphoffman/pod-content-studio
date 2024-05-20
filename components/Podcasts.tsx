@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import { SanityDocument } from 'next-sanity'
 
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { PODCASTS_QUERY } from '@/lib/sanity/sanity.queries'
+import { Podcast } from '@/lib/sanity/sanity.types'
 
 import PodcastRow from './podcasts/PodcastRow'
 
 export default async function Authors() {
-	const podcasts = await sanityFetch<SanityDocument[]>({
+	const podcasts = await sanityFetch<Podcast[]>({
 		query: PODCASTS_QUERY,
 	})
 	return (

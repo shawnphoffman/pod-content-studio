@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { SanityDocument } from 'next-sanity'
 
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { AWARDS_QUERY } from '@/lib/sanity/sanity.queries'
+import { Award } from '@/lib/sanity/sanity.types'
 
 export default async function Awards() {
-	const awards = await sanityFetch<SanityDocument[]>({
+	const awards = await sanityFetch<Award[]>({
 		query: AWARDS_QUERY,
 	})
 	return (

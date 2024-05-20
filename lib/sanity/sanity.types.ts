@@ -1,24 +1,44 @@
-export interface Author {
+import { SanityDocument } from 'next-sanity'
+import { Image, Slug } from 'sanity'
+
+export interface Author extends SanityDocument {
 	name?: string
-	image?: any
+	image?: Image
+	slug: Slug
 }
 
-export interface Post {
-	_id: string
-	_updatedAt?: string
+export interface Post extends SanityDocument {
 	title: string
 	slug: string
-	mainImage?: any
+	mainImage?: Image
 	publishedAt: string
-	author: Author
+	author: {
+		name?: string
+		image?: Image
+		slug: string
+	}
 	body: any
 	excerpt: string
+	categories?: {
+		title: string
+		description?: any[]
+		image?: Image
+	}[]
 }
 
-export interface Settings {
-	title?: string
-	description?: any[]
-	ogImage?: {
-		title?: string
+export interface Podcast extends SanityDocument {
+	title: string
+	description?: string
+	image: Image
+}
+
+export interface Award extends SanityDocument {
+	name: string
+	linkUrl?: string
+	imageUrl?: string
+	category?: {
+		title: string
+		description?: any[]
+		image?: Image
 	}
 }
