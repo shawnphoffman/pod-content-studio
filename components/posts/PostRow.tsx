@@ -10,7 +10,7 @@ import PostDate from './PostDate'
 
 export default function PostRow({ mainImage, title, publishedAt, author, podcasts }) {
 	return (
-		<div className="flex flex-col items-center justify-between gap-2 p-4 py-2 transition-all rounded-lg hover:bg-sky-950/50 md:flex-row md:gap-4">
+		<div className="flex flex-col items-center justify-between gap-2 p-4 py-2 transition-all rounded-lg hover:dark:bg-sky-950/50 hover:bg-sky-100/50 md:flex-row md:gap-4">
 			{mainImage && (
 				<Image
 					className="h-auto w-96 md:w-24"

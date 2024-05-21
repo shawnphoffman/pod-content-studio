@@ -1,5 +1,5 @@
 import { faShawn } from '@awesome.me/kit-50792a5d55/icons/kit/custom'
-import { faAward, faBars, faNewspaper, faPenToSquare, faPodcast, faUser } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
+import { faAward, faBars, faBlockQuestion, faNewspaper, faPenNib, faPodcast, faUser } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
@@ -29,20 +29,27 @@ export default function Sidebar() {
 						<FontAwesomeIcon icon={faShawn} className="text-4xl" />
 						<span className="self-center text-xl font-semibold whitespace-nowrap ">Pod Content</span>
 					</a>
-					{/* STUDIO */}
+					{/* STATIC PAGES */}
 					<ul className="space-y-2 font-medium">
 						<li>
-							<Link
-								href="/studio"
-								className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group gap-3"
-							>
-								<FontAwesomeIcon icon={faPenToSquare} fixedWidth />
+							<Link href="/faq" className="sidebar-item group">
+								<FontAwesomeIcon icon={faBlockQuestion} fixedWidth />
+								<span>WTF is this?</span>
+							</Link>
+						</li>
+					</ul>
+					{/* STUDIO */}
+					<ul className="space-y-2 font-semibold text-lg pt-2 mt-2 border-t border-zinc-210 dark:border-zinc-700">
+						<li>
+							{/* <Link href="/studio" className="sidebar-item group !text-sky-600 dark:!text-sky-400"> */}
+							<Link href="/studio" className="sidebar-item group animate-pulse">
+								<FontAwesomeIcon icon={faPenNib} fixedWidth />
 								<span>Studio Editor</span>
 							</Link>
 						</li>
 					</ul>
 					{/* LINKS */}
-					<ul className="space-y-2 font-medium pt-4 mt-4 border-t border-zinc-210 dark:border-zinc-700">
+					<ul className="space-y-2 font-medium pt-2 mt-2 border-t border-zinc-210 dark:border-zinc-700">
 						<li>
 							<Link href="/" className="sidebar-item group">
 								<FontAwesomeIcon icon={faNewspaper} fixedWidth />

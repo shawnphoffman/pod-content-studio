@@ -41,7 +41,7 @@ export default function Post({ post }: { post: POST_QUERYResult }) {
 	const { title, mainImage, body } = post
 
 	return (
-		<div className="flex flex-col items-center justify-center gap-4 border border-zinc-500 m-4">
+		<div className="flex flex-col items-center justify-center gap-4 px-2 my-2  bg-zinc-950/90">
 			<PostTitle>{title}</PostTitle>
 
 			<PostAuthor author={post.author} />

@@ -27,12 +27,14 @@ export default async function Page({ params }: { params: QueryParams }) {
 		return notFound()
 	}
 	return (
-		<div>
-			<h1>Post Preview:</h1>
-			<Link href="/" className="flex flex-row gap-2 items-center text-sky-400 hover:text-yellow-400">
-				<FontAwesomeIcon icon={faLeft} />
-				<span>Back to Posts</span>
-			</Link>
+		<div className="flex flex-col">
+			<div className="border-b border-dashed border-zinc-500 pb-4">
+				<h1>Post Preview:</h1>
+				<Link href="/" className="flex flex-row gap-2 items-center text-sky-400 hover:text-yellow-400">
+					<FontAwesomeIcon icon={faLeft} />
+					<span>Back to Posts</span>
+				</Link>
+			</div>
 			<Post post={post} />
 		</div>
 	)

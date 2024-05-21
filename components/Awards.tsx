@@ -19,7 +19,7 @@ export default async function Awards() {
 					<Link
 						key={award.linkUrl}
 						href={`/award/${award._id}`}
-						className="flex flex-col items-center justify-start gap-2 p-4 py-2 transition-all rounded-lg hover:bg-sky-950/50 md:flex-row md:gap-4"
+						className="flex flex-col items-center justify-start gap-2 p-4 py-2 transition-all rounded-lg hover:dark:bg-sky-950/50 hover:bg-sky-100/50 md:flex-row md:gap-4"
 					>
 						<Image
 							className="h-auto w-96 md:w-24"

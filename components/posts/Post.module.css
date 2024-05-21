@@ -1,6 +1,6 @@
 /* BASELINE */
 .portableText {
-	@apply text-lg leading-relaxed;
+	@apply text-lg leading-relaxed text-white;
 }
 
 .portableText p,

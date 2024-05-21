@@ -21,7 +21,7 @@ export default function PostAuthor(props: Props) {
 					alt={(image?.alt ?? name ?? '') as string}
 				/>
 			</div>
-			<div className="text-base font-bold lg:text-xl text-nowrap">{name}</div>
+			<div className="text-base font-bold lg:text-xl text-nowrap text-white">{name}</div>
 		</div>
 	)
 }
