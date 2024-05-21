@@ -13,13 +13,12 @@ export default async function Awards() {
 		query: AWARDS_QUERY,
 	})
 
-	console.log(JSON.stringify(awards, null, 2))
 	return (
 		<main className="container mx-auto grid grid-cols-1 divide-y divide-zinc-100 dark:divide-zinc-900">
 			{awards?.length > 0 ? (
 				awards.map(award => (
 					<Link
-						key={award._id}
+						key={award.linkUrl}
 						href={`/award/${award._id}`}
 						className="flex flex-col items-center justify-start gap-2 p-4 py-2 transition-all rounded-lg hover:bg-sky-950/50 md:flex-row md:gap-4"
 					>

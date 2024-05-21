@@ -6,8 +6,6 @@ import { PodcastChild } from '@/lib/sanity/sanity.types'
 export default function PodcastAvatars({ podcasts }) {
 	if (!podcasts) return null
 
-	console.log('podcasts', podcasts)
-
 	return (
 		<div className="flex -space-x-4 rtl:space-x-reverse flex-1 justify-end items-center">
 			{podcasts?.map((podcast: PodcastChild) => {
