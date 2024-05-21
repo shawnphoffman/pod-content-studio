@@ -10,6 +10,9 @@ export default async function Posts() {
 	const posts = await sanityFetch<Post[]>({
 		query: POSTS_QUERY,
 	})
+
+	console.log({ posts })
+
 	return (
 		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-700">
 			{posts?.length > 0 ? (

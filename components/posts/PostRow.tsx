@@ -22,7 +22,7 @@ export default function PostRow({ mainImage, title, publishedAt, author, podcast
 				/>
 			)}
 			<div className="flex flex-row flex-1 gap-2">
-				<div className="flex items-center justify-center md:hidden">
+				<div className="flex items-center justify-center lg:hidden">
 					<PostAuthorAvatar name={author?.name} image={author?.image} />
 				</div>
 				<div className="flex flex-col items-start justify-center flex-1 w-full">
@@ -30,8 +30,9 @@ export default function PostRow({ mainImage, title, publishedAt, author, podcast
 					<PostDate dateString={publishedAt} />
 				</div>
 			</div>
+			{/* <PodcastAvatars podcasts={[...(podcasts || []), ...(podcasts || []), ...(podcasts || [])]} /> */}
 			<PodcastAvatars podcasts={podcasts} />
-			<div className="hidden md:flex">
+			<div className="hidden lg:flex">
 				<PostAuthor name={author?.name} image={author?.image} />
 			</div>
 		</div>
