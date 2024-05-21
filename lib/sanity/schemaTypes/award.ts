@@ -11,16 +11,27 @@ export default defineType({
 			name: 'name',
 			title: 'Name',
 			type: 'string',
+			validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'linkUrl',
 			title: 'Link URL',
 			type: 'url',
+			validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'imageUrl',
 			title: 'Image URL',
 			type: 'url',
+			validation: Rule => Rule.required(),
+		}),
+		defineField({
+			name: 'active',
+			title: 'Active',
+			description: 'Is this award currently active and visible?',
+			type: 'boolean',
+			initialValue: false,
+			validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'category',

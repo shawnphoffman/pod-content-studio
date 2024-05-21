@@ -2,14 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
-import { urlFor } from '@/lib/sanity/sanity.image'
 import { AWARDS_QUERY } from '@/lib/sanity/sanity.queries'
-import { Award } from '@/lib/sanity/sanity.types'
+import { AWARDS_QUERYResult } from '@/lib/sanity/sanity.types'
 
 import PodcastAvatars from './podcasts/PodcastAvatars'
 
 export default async function Awards() {
-	const awards = await sanityFetch<Award[]>({
+	const awards = await sanityFetch<AWARDS_QUERYResult>({
 		query: AWARDS_QUERY,
 	})
 
@@ -27,7 +26,6 @@ export default async function Awards() {
 							width={200}
 							height={200}
 							alt={(award.category?.image?.alt as string) || ''}
-							// src={urlFor(award.category?.image).height(200).width(200).url()}
 							src={award.imageUrl}
 							sizes="100vw"
 						/>

@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
 import { urlForSanityImage } from '@/lib/sanity/sanity.image'
-import { Author } from '@/lib/sanity/sanity.types'
+import { POST_QUERYResult } from '@/lib/sanity/sanity.types'
 
 type Props = {
-	image: Author['image']
-	name: Author['name']
+	image: NonNullable<POST_QUERYResult>['author']['image']
+	name: NonNullable<POST_QUERYResult>['author']['name']
 }
 
 export default function PostAuthorAvatar(props: Props) {

@@ -1,15 +1,14 @@
 import Image from 'next/image'
 
 import { urlForSanityImage } from '@/lib/sanity/sanity.image'
-import { Author } from '@/lib/sanity/sanity.types'
+import { POST_QUERYResult } from '@/lib/sanity/sanity.types'
 
 type Props = {
-	image: Author['image']
-	name: Author['name']
+	author: NonNullable<POST_QUERYResult>['author']
 }
 
 export default function PostAuthor(props: Props) {
-	const { name, image } = props
+	const { name, image } = props.author
 	const src = urlForSanityImage(image!).height(96).width(96).fit('crop').url()
 	return (
 		<div className="flex items-center gap-2">

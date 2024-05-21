@@ -2,7 +2,7 @@ import { faLeft } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 // import { notFound } from 'next/navigation'
-import { QueryParams, SanityDocument } from 'next-sanity'
+import { QueryParams } from 'next-sanity'
 
 // import Post from '@/components/posts/Post'
 // import { sanityFetch } from '@/lib/sanity/sanity.fetch'

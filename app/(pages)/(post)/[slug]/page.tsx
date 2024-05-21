@@ -2,26 +2,27 @@ import { faLeft } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { QueryParams, SanityDocument } from 'next-sanity'
+import { QueryParams } from 'next-sanity'
 
 import Post from '@/components/posts/Post'
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { POST_QUERY, POSTS_QUERY } from '@/lib/sanity/sanity.queries'
+import { POST_QUERYResult, POSTS_QUERYResult } from '@/lib/sanity/sanity.types'
 
 export async function generateStaticParams() {
-	const posts = await sanityFetch<SanityDocument[]>({
+	const posts = await sanityFetch<POSTS_QUERYResult>({
 		query: POSTS_QUERY,
 		perspective: 'published',
 		stega: false,
 	})
 
 	return posts.map(post => ({
-		slug: post.slug.current,
+		slug: post.slug,
 	}))
 }
 
 export default async function Page({ params }: { params: QueryParams }) {
-	const post = await sanityFetch<SanityDocument>({ query: POST_QUERY, params })
+	const post = await sanityFetch<POST_QUERYResult>({ query: POST_QUERY, params })
 	if (!post) {
 		return notFound()
 	}

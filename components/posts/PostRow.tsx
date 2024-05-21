@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { urlFor, urlForSanityImage } from '@/lib/sanity/sanity.image'
+import { urlFor } from '@/lib/sanity/sanity.image'
 
 import PodcastAvatars from '../podcasts/PodcastAvatars'
 
@@ -33,7 +33,7 @@ export default function PostRow({ mainImage, title, publishedAt, author, podcast
 			{/* <PodcastAvatars podcasts={[...(podcasts || []), ...(podcasts || []), ...(podcasts || [])]} /> */}
 			<PodcastAvatars podcasts={podcasts} />
 			<div className="hidden lg:flex">
-				<PostAuthor name={author?.name} image={author?.image} />
+				<PostAuthor author={author} />
 			</div>
 		</div>
 	)

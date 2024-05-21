@@ -6,7 +6,10 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"schema": "sanity schema extract --enforce-required-fields --path ./lib/sanity/sanity.schema.json",
+		"types": "sanity typegen generate --config-path ./sanity-typegen.json",
+		"typecheck": "tsc --pretty --noEmit"
 	},
 	"dependencies": {
 		"@awesome.me/kit-50792a5d55": "^1.0.8",

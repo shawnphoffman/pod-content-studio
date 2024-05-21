@@ -32,6 +32,7 @@ export default defineType({
 			description: 'Who wrote this post?',
 			type: 'reference',
 			to: { type: 'author' },
+			validation: rule => rule.required(),
 		}),
 		defineField({
 			name: 'categories',

@@ -2,12 +2,12 @@ import Link from 'next/link'
 
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { AUTHORS_QUERY } from '@/lib/sanity/sanity.queries'
-import { Author } from '@/lib/sanity/sanity.types'
+import { AUTHORS_QUERYResult } from '@/lib/sanity/sanity.types'
 
 import AuthorRow from './authors/AuthorRow'
 
 export default async function Authors() {
-	const authors = await sanityFetch<Author[]>({
+	const authors = await sanityFetch<AUTHORS_QUERYResult>({
 		query: AUTHORS_QUERY,
 	})
 	return (

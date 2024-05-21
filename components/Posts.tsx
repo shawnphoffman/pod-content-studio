@@ -2,16 +2,14 @@ import Link from 'next/link'
 
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { POSTS_QUERY } from '@/lib/sanity/sanity.queries'
-import { Post } from '@/lib/sanity/sanity.types'
+import { POSTS_QUERYResult } from '@/lib/sanity/sanity.types'
 
 import PostRow from './posts/PostRow'
 
 export default async function Posts() {
-	const posts = await sanityFetch<Post[]>({
+	const posts = await sanityFetch<POSTS_QUERYResult>({
 		query: POSTS_QUERY,
 	})
-
-	console.log({ posts })
 
 	return (
 		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-700">
