@@ -31,9 +31,11 @@ export default function PostRow({ mainImage, title, publishedAt, author, podcast
 				</div>
 			</div>
 			{/* <PodcastAvatars podcasts={[...(podcasts || []), ...(podcasts || []), ...(podcasts || [])]} /> */}
-			<PodcastAvatars podcasts={podcasts} />
-			<div className="hidden lg:flex">
-				<PostAuthor author={author} />
+			<div className="divide-x flex flex-row gap-2 divide-zinc-200 dark:divide-zinc-700">
+				<PodcastAvatars podcasts={podcasts} />
+				<div className="hidden lg:flex lg:ps-2">
+					<PostAuthor author={author} />
+				</div>
 			</div>
 		</div>
 	)

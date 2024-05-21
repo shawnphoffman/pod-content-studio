@@ -12,7 +12,7 @@ export default async function Posts() {
 	})
 
 	return (
-		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-700">
+		<div className="container mx-auto grid grid-cols-1 divide-y divide-zinc-200 dark:divide-zinc-700">
 			{posts?.length > 0 ? (
 				posts.map(post => {
 					const { author, mainImage, publishedAt, slug, _id, title, categories } = post
