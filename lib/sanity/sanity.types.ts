@@ -1,9 +1,13 @@
 import { SanityDocument } from 'next-sanity'
 import { Image, Slug } from 'sanity'
 
+export interface SanityImage extends Image {
+	alt?: string
+}
+
 export interface Author extends SanityDocument {
 	name?: string
-	image?: Image
+	image?: SanityImage
 	slug: Slug
 }
 
@@ -12,33 +16,33 @@ export interface Post extends SanityDocument {
 	slug: string
 	mainImage?: Image
 	publishedAt: string
-	author: {
-		name?: string
-		image?: Image
-		slug: string
-	}
+	author: AuthorChild
 	body: any
 	excerpt: string
-	categories?: {
-		title: string
-		description?: any[]
-		image?: Image
-	}[]
+	categories?: PodcastChild[]
 }
 
 export interface Podcast extends SanityDocument {
 	title: string
 	description?: string
-	image: Image
+	image: SanityImage
 }
 
 export interface Award extends SanityDocument {
 	name: string
-	linkUrl?: string
-	imageUrl?: string
-	category?: {
-		title: string
-		description?: any[]
-		image?: Image
-	}
+	linkUrl: string
+	imageUrl: string
+	category: PodcastChild
+}
+
+export interface AuthorChild {
+	name: string
+	image: SanityImage
+	slug: Slug
+}
+
+export interface PodcastChild {
+	title: string
+	description?: string
+	image: SanityImage
 }

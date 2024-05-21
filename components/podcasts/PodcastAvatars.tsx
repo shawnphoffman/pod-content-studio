@@ -1,25 +1,28 @@
-// import PostAuthor from '../posts/PostAuthor'
-
 import Image from 'next/image'
 
-import { urlFor } from '@/lib/sanity/sanity.image'
+import { urlForSanityImage } from '@/lib/sanity/sanity.image'
+import { PodcastChild } from '@/lib/sanity/sanity.types'
 
-export default function PodcastRow({ podcast }) {
-	// console.log(podcast)
+export default function PodcastAvatars({ podcasts }) {
+	if (!podcasts) return null
+
+	console.log('podcasts', podcasts)
+
 	return (
-		<div className="flex flex-col items-center gap-2 p-4 py-2 transition-all rounded-lg hover:bg-sky-950/50 md:flex-row md:gap-4">
-			{podcast.image && (
-				<Image
-					className="h-auto w-96 md:w-24"
-					width={200}
-					height={200}
-					alt={podcast.image?.alt || ''}
-					src={urlFor(podcast.image).height(200).width(200).url()}
-					sizes="100vw"
-				/>
-			)}
-			<h3 className="p-4 text-lg font-medium">{podcast.title}</h3>
-			{/* <PostAuthor name={author?.name} image={author?.image} /> */}
+		<div className="flex -space-x-4 rtl:space-x-reverse flex-1 justify-end items-center">
+			{podcasts?.map((podcast: PodcastChild) => {
+				return (
+					<Image
+						key={podcast?.image?.asset?._ref}
+						src={urlForSanityImage(podcast.image).height(96).width(96).fit('crop').url()}
+						className="w-12 h-12 border-2 rounded-full"
+						height={96}
+						width={96}
+						alt={podcast.image.alt || ''}
+						title={podcast.title}
+					/>
+				)
+			})}
 		</div>
 	)
 }

@@ -6,6 +6,11 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'cdn.sanity.io',
 			},
+			{
+				protocol: 'https',
+				hostname: 'storage.googleapis.com',
+				pathname: '/goodpods-images-bucket/**',
+			},
 		],
 	},
 	experimental: {

@@ -2,6 +2,8 @@ import Image from 'next/image'
 
 import { urlFor, urlForSanityImage } from '@/lib/sanity/sanity.image'
 
+import PodcastAvatars from '../podcasts/PodcastAvatars'
+
 import PostAuthor from './PostAuthor'
 import PostAuthorAvatar from './PostAuthorAvatar'
 import PostDate from './PostDate'
@@ -28,21 +30,7 @@ export default function PostRow({ mainImage, title, publishedAt, author, podcast
 					<PostDate dateString={publishedAt} />
 				</div>
 			</div>
-			<div className="flex -space-x-4 rtl:space-x-reverse flex-1 justify-center items-center">
-				{podcasts &&
-					podcasts?.map(podcast => {
-						return (
-							<Image
-								key={podcast?.image?.asset?._ref}
-								src={urlForSanityImage(podcast.image).height(96).width(96).fit('crop').url()}
-								className="w-12 h-12 border-2 rounded-full"
-								height={96}
-								width={96}
-								alt={podcast.alt}
-							/>
-						)
-					})}
-			</div>
+			<PodcastAvatars podcasts={podcasts} />
 			<div className="hidden md:flex">
 				<PostAuthor name={author?.name} image={author?.image} />
 			</div>
