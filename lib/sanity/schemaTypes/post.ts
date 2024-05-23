@@ -46,7 +46,7 @@ export default defineType({
 				{
 					name: 'alt',
 					type: 'string',
-					title: 'Descriptive text that explains the meaning and context for vision-impaired users',
+					title: 'Alt Text (descriptive text that explains the meaning and context for vision-impaired users)',
 				},
 			],
 		}),

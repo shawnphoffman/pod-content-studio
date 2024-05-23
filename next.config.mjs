@@ -13,9 +13,9 @@ const nextConfig = {
 			},
 		],
 	},
-	experimental: {
-		taint: true,
-	},
+	// experimental: {
+	// 	taint: true,
+	// },
 	// ...other config settings
 }
 
