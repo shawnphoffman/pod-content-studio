@@ -18,7 +18,7 @@ export default defineType({
 			name: 'slug',
 			title: 'Slug',
 			type: 'slug',
-			description: 'This is the unique URL path for the post.',
+			description: 'This is the unique URL path for the post. Just click "Generate" until I can automate it.',
 			options: {
 				source: 'title',
 				maxLength: 96,
@@ -28,11 +28,41 @@ export default defineType({
 		}),
 		defineField({
 			name: 'author',
-			title: 'Author',
+			title: 'Post Author',
 			description: 'Who wrote this post?',
 			type: 'reference',
 			to: { type: 'author' },
 			validation: rule => rule.required(),
+		}),
+		defineField({
+			name: 'mainImage',
+			title: 'Main Image',
+			description: 'This is the big hero image that appears at the top of the post and in the feed.',
+			type: 'image',
+			options: {
+				hotspot: true,
+			},
+			fields: [
+				{
+					name: 'alt',
+					type: 'string',
+					title: 'Descriptive text that explains the meaning and context for vision-impaired users',
+				},
+			],
+		}),
+		defineField({
+			name: 'excerpt',
+			title: 'Excerpt',
+			description: 'This ends up on summary pages, on Google, when shared on social media, etc.',
+			type: 'text',
+			validation: Rule => Rule.required().max(150),
+		}),
+		defineField({
+			name: 'body',
+			title: 'Body',
+			description: 'This is the main content of the post.',
+			type: 'blockContent',
+			validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'categories',
@@ -43,38 +73,8 @@ export default defineType({
 			// validation: (Rule) => Rule.required(),
 		}),
 		defineField({
-			name: 'mainImage',
-			title: 'Main image',
-			description: 'This is the main image of the post.',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: 'alt',
-					type: 'string',
-					title: 'Alternative Text',
-				},
-			],
-		}),
-		defineField({
-			name: 'excerpt',
-			title: 'Excerpt',
-			description: 'This ends up on summary pages, on Google, when shared on social media, etc.',
-			type: 'text',
-			validation: Rule => Rule.required(),
-		}),
-		defineField({
-			name: 'body',
-			title: 'Body',
-			description: 'This is the main content of the post.',
-			type: 'blockContent',
-			validation: Rule => Rule.required(),
-		}),
-		defineField({
 			name: 'publishedAt',
-			title: 'Published at',
+			title: 'Publish Date',
 			description: 'This controls the order of posts in the feed.',
 			type: 'datetime',
 			initialValue: () => new Date().toISOString(),
