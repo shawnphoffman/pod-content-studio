@@ -26,11 +26,11 @@ export default defineType({
 				hotspot: true,
 			},
 			fields: [
-				{
-					name: 'alt',
-					type: 'string',
-					title: 'Alternative Text',
-				},
+				// {
+				// 	name: 'alt',
+				// 	type: 'string',
+				// 	title: 'Alternative Text',
+				// },
 			],
 			validation: Rule => Rule.required(),
 		}),

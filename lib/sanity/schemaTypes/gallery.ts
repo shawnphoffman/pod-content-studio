@@ -16,11 +16,11 @@ const gallery = {
 				{
 					type: 'image',
 					fields: [
-						{
-							name: 'alt',
-							title: 'Alt',
-							type: 'string',
-						},
+						// {
+						// 	name: 'alt',
+						// 	title: 'Alt',
+						// 	type: 'string',
+						// },
 					],
 				},
 			],

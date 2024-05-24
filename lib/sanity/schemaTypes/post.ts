@@ -43,11 +43,11 @@ export default defineType({
 				hotspot: true,
 			},
 			fields: [
-				{
-					name: 'alt',
-					type: 'string',
-					title: 'Alt Text (descriptive text that explains the meaning and context for vision-impaired users)',
-				},
+				// {
+				// 	name: 'alt',
+				// 	type: 'string',
+				// 	title: 'Alt Text (descriptive text that explains the meaning and context for vision-impaired users)',
+				// },
 			],
 		}),
 		defineField({
