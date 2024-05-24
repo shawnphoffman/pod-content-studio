@@ -88,10 +88,14 @@ export default defineType({
 			author: 'author.name',
 			media: 'mainImage',
 			category: 'categories.0.title',
+			categories: 'categories',
 		},
 		prepare(selection) {
-			const { author, category } = selection
-			return { ...selection, subtitle: author && `${category || 'None'} - ${author}` }
+			const { author, category, categories } = selection
+
+			const subtitle = Object.keys(categories ?? {}).length > 1 ? 'Multiple Pods' : category
+
+			return { ...selection, subtitle: `${subtitle || 'No Pods'} - ${author || ''}` }
 		},
 	},
 	//
