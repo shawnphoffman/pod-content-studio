@@ -11,33 +11,27 @@ export default defineType({
 			name: 'name',
 			title: 'Name',
 			type: 'string',
-			validation: rule => rule.required(),
+			validation: rule => rule.required().max(50),
 		}),
-		defineField({
-			name: 'slug',
-			title: 'Slug',
-			type: 'slug',
-			options: {
-				source: 'name',
-				maxLength: 96,
-				isUnique: (value, context) => context.defaultIsUnique(value, context),
-			},
-			validation: rule => rule.required(),
-		}),
+		// defineField({
+		// 	name: 'slug',
+		// 	title: 'Slug',
+		// 	type: 'slug',
+		// 	description: 'This is the unique URL path for the post. Just click "Generate" until I can automate it.',
+		// 	options: {
+		// 		source: 'name',
+		// 		maxLength: 96,
+		// 		isUnique: (value, context) => context.defaultIsUnique(value, context),
+		// 	},
+		// 	validation: rule => rule.required(),
+		// }),
 		defineField({
 			name: 'image',
-			title: 'Image',
+			title: 'Photo',
 			type: 'image',
 			options: {
 				hotspot: true,
 			},
-			fields: [
-				{
-					name: 'alt',
-					type: 'string',
-					title: 'Alternative Text',
-				},
-			],
 			validation: rule => rule.required(),
 		}),
 		// defineField({
