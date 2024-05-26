@@ -17,7 +17,7 @@ export default function PodcastAvatars({ podcasts }) {
 						className="w-12 h-12 border-2 border-sky-400 rounded-xl dark:outline-zinc-950 outline-zinc-50 outline outline-2"
 						height={96}
 						width={96}
-						alt={podcast.image.alt || ''}
+						alt={''}
 						title={podcast.title}
 					/>
 				)

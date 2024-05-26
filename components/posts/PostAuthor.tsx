@@ -13,13 +13,7 @@ export default function PostAuthor(props: Props) {
 	return (
 		<div className="flex items-center gap-2">
 			<div className="relative w-12 h-12">
-				<Image
-					src={src}
-					className="rounded-full border-2 border-red-600"
-					height={96}
-					width={96}
-					alt={(image?.alt ?? name ?? '') as string}
-				/>
+				<Image src={src} className="rounded-full border-2 border-red-600" height={96} width={96} alt={''} />
 			</div>
 			<div className="text-base font-bold lg:text-xl text-nowrap text-white">{name}</div>
 		</div>

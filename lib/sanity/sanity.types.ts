@@ -79,7 +79,6 @@ export type Gallery = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 		_key: string
 	}>
@@ -136,7 +135,6 @@ export type BlockContent = Array<
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			caption?: string
 			_type: 'image'
 			_key: string
@@ -165,7 +163,6 @@ export type Category = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 }
@@ -184,13 +181,6 @@ export type Post = {
 		_weak?: boolean
 		[internalGroqTypeReferenceTo]?: 'author'
 	}
-	categories?: Array<{
-		_ref: string
-		_type: 'reference'
-		_weak?: boolean
-		_key: string
-		[internalGroqTypeReferenceTo]?: 'category'
-	}>
 	mainImage?: {
 		asset?: {
 			_ref: string
@@ -200,11 +190,17 @@ export type Post = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 	excerpt: string
 	body: BlockContent
+	categories?: Array<{
+		_ref: string
+		_type: 'reference'
+		_weak?: boolean
+		_key: string
+		[internalGroqTypeReferenceTo]?: 'category'
+	}>
 	publishedAt: string
 }
 
@@ -215,7 +211,6 @@ export type Author = {
 	_updatedAt: string
 	_rev: string
 	name: string
-	slug: Slug
 	image: {
 		asset?: {
 			_ref: string
@@ -225,7 +220,6 @@ export type Author = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 }
@@ -314,7 +308,6 @@ export type POSTS_QUERYResult = Array<{
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	} | null
 	slug: string
@@ -329,7 +322,6 @@ export type POSTS_QUERYResult = Array<{
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			_type: 'image'
 		}
 	}
@@ -344,7 +336,6 @@ export type POSTS_QUERYResult = Array<{
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			_type: 'image'
 		}
 	}> | null
@@ -369,7 +360,6 @@ export type POST_QUERYResult = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	} | null
 	slug: string
@@ -384,7 +374,6 @@ export type POST_QUERYResult = {
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			_type: 'image'
 		}
 	}
@@ -399,7 +388,6 @@ export type POST_QUERYResult = {
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			_type: 'image'
 		}
 	}> | null
@@ -423,7 +411,6 @@ export type PODCASTS_QUERYResult = Array<{
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 }>
@@ -446,7 +433,6 @@ export type PODCAST_QUERYResult = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 } | null
@@ -460,7 +446,6 @@ export type AUTHORS_QUERYResult = Array<{
 	_updatedAt: string
 	_rev: string
 	name: string
-	slug: Slug
 	image: {
 		asset?: {
 			_ref: string
@@ -470,7 +455,6 @@ export type AUTHORS_QUERYResult = Array<{
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 }>
@@ -484,7 +468,6 @@ export type AUTHOR_QUERYResult = {
 	_updatedAt: string
 	_rev: string
 	name: string
-	slug: Slug
 	image: {
 		asset?: {
 			_ref: string
@@ -494,7 +477,6 @@ export type AUTHOR_QUERYResult = {
 		}
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
-		alt?: string
 		_type: 'image'
 	}
 } | null
@@ -517,7 +499,6 @@ export type AWARDS_QUERYResult = Array<{
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			_type: 'image'
 		}
 	} | null
@@ -541,7 +522,6 @@ export type AWARD_QUERYResult = {
 			}
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
-			alt?: string
 			_type: 'image'
 		}
 	} | null

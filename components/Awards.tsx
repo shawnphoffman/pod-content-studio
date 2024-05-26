@@ -21,14 +21,7 @@ export default async function Awards() {
 						href={`/award/${award._id}`}
 						className="flex flex-col items-center justify-start gap-2 p-4 py-2 transition-all rounded-lg hover:dark:bg-sky-950/50 hover:bg-sky-100/50 md:flex-row md:gap-4"
 					>
-						<Image
-							className="h-auto w-96 md:w-24"
-							width={200}
-							height={200}
-							alt={(award.category?.image?.alt as string) || ''}
-							src={award.imageUrl}
-							sizes="100vw"
-						/>
+						<Image className="h-auto w-96 md:w-24" width={200} height={200} alt={''} src={award.imageUrl} sizes="100vw" />
 						<span className="text-xl font-bold transition-colors group-hover:text-sky-400">{award.name}</span>
 						<PodcastAvatars podcasts={[award.category]} />
 					</Link>
