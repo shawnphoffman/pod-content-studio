@@ -27,6 +27,16 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
 	${postFields}
 }`
 
+export const POSTSBYPOD_QUERY =
+	podName => groq`*[_type == "post" && "${podName}" in categories[]->.title] | order(date desc, publishedAt desc) {
+	${postFields}
+}`
+
+export const POSTSBYAUTHOR_QUERY =
+	authorId => groq`*[_type == "post" && author._ref == "${authorId}"] | order(date desc, publishedAt desc) {
+	${postFields}
+}`
+
 // =======================
 // PODCAST QUERIES
 // =======================

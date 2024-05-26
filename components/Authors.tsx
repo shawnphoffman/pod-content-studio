@@ -14,7 +14,7 @@ export default async function Authors() {
 		<main className="container mx-auto grid grid-cols-1 divide-y divide-zinc-100 dark:divide-zinc-900">
 			{authors?.length > 0 ? (
 				authors.map(author => (
-					<Link key={author._id} href={`/author/${author._id}`}>
+					<Link key={author._id} href={`/author/${author._id}?name=${author.name}`}>
 						<AuthorRow key={author._id} author={author} />
 					</Link>
 				))
