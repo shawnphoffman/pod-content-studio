@@ -1,6 +1,8 @@
 import { DocumentTextIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
+import { ImprovedInput } from '@/components/studio/decorators/ImprovedInput'
+
 export default defineType({
 	name: 'post',
 	title: 'Post',
@@ -56,6 +58,9 @@ export default defineType({
 			description: 'This ends up on summary pages, on Google, when shared on social media, etc.',
 			type: 'text',
 			validation: Rule => Rule.required().max(150),
+			components: {
+				input: ImprovedInput,
+			},
 		}),
 		defineField({
 			name: 'body',
