@@ -34,5 +34,17 @@ export default defineType({
 			],
 			validation: Rule => Rule.required(),
 		}),
+		defineField({
+			name: 'webUrl',
+			title: 'Website URL',
+			type: 'url',
+			// validation: Rule => Rule.required(),
+		}),
+		defineField({
+			name: 'webUrlDev',
+			title: 'Website URL (Dev)',
+			type: 'url',
+			// validation: Rule => Rule.required(),
+		}),
 	],
 })

@@ -165,6 +165,8 @@ export type Category = {
 		crop?: SanityImageCrop
 		_type: 'image'
 	}
+	webUrl?: string
+	webUrlDev?: string
 }
 
 export type Post = {
@@ -413,6 +415,8 @@ export type PODCASTS_QUERYResult = Array<{
 		crop?: SanityImageCrop
 		_type: 'image'
 	}
+	webUrl?: string
+	webUrlDev?: string
 }>
 
 // Variable: PODCAST_QUERY
@@ -435,6 +439,8 @@ export type PODCAST_QUERYResult = {
 		crop?: SanityImageCrop
 		_type: 'image'
 	}
+	webUrl?: string
+	webUrlDev?: string
 } | null
 
 // Variable: AUTHORS_QUERY
