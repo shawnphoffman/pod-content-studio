@@ -517,7 +517,7 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "imageUrl": {
         "type": "objectAttribute",

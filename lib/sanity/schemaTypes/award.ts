@@ -23,7 +23,7 @@ export default defineType({
 			name: 'linkUrl',
 			title: 'Link URL',
 			type: 'url',
-			validation: Rule => Rule.required(),
+			// validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'imageUrl',

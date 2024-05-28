@@ -57,11 +57,8 @@ export const AUTHOR_QUERY = groq`*[_type == "author" && slug.current == $slug][0
 // AWARD QUERIES
 // =======================
 const awardFields = `
-	_id,
-	name,
-	imageUrl,
-	linkUrl,
-	"category": category->{title, image}
+	...,
+	"category": category->{title, image},
 `
 export const AWARDS_QUERY = groq`*[_type == "award"]{
 	${awardFields}

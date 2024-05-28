@@ -102,7 +102,7 @@ export type Award = {
 		_weak?: boolean
 		[internalGroqTypeReferenceTo]?: 'category'
 	}
-	linkUrl: string
+	linkUrl?: string
 	imageUrl: string
 	active: boolean
 	width?: number
@@ -490,12 +490,14 @@ export type AUTHOR_QUERYResult = {
 } | null
 
 // Variable: AWARDS_QUERY
-// Query: *[_type == "award"]{		_id,	name,	imageUrl,	linkUrl,	"category": category->{title, image}}
+// Query: *[_type == "award"]{		...,	"category": category->{title, image},}
 export type AWARDS_QUERYResult = Array<{
 	_id: string
+	_type: 'award'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
 	name: string
-	imageUrl: string
-	linkUrl: string
 	category: {
 		title: string
 		image: {
@@ -510,15 +512,22 @@ export type AWARDS_QUERYResult = Array<{
 			_type: 'image'
 		}
 	} | null
+	linkUrl?: string
+	imageUrl: string
+	active: boolean
+	width?: number
+	height?: number
 }>
 
 // Variable: AWARD_QUERY
-// Query: *[_type == "award" && _id == $id][0] {		_id,	name,	imageUrl,	linkUrl,	"category": category->{title, image}}
+// Query: *[_type == "award" && _id == $id][0] {		...,	"category": category->{title, image},}
 export type AWARD_QUERYResult = {
 	_id: string
+	_type: 'award'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
 	name: string
-	imageUrl: string
-	linkUrl: string
 	category: {
 		title: string
 		image: {
@@ -533,6 +542,11 @@ export type AWARD_QUERYResult = {
 			_type: 'image'
 		}
 	} | null
+	linkUrl?: string
+	imageUrl: string
+	active: boolean
+	width?: number
+	height?: number
 } | null
 
 
