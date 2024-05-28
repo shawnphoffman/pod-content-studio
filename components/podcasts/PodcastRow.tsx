@@ -24,7 +24,7 @@ export default function PodcastRow({ podcast }: Props) {
 			<div className="py-2 text-lg font-medium flex-1">{podcast.title}</div>
 			{podcast.webUrl && (
 				<Link className="hover:text-sky-500" href={podcast.webUrl}>
-					{podcast.webUrl.replace('https://', '').replace('/', '')}
+					{podcast.webUrl.replace('https://', '').replace(/\/$/, '')}
 				</Link>
 			)}
 		</div>
