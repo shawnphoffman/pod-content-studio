@@ -47,4 +47,11 @@ export default defineType({
 			// validation: Rule => Rule.required(),
 		}),
 	],
+	orderings: [
+		{
+			title: 'Title',
+			name: 'title',
+			by: [{ field: 'title', direction: 'asc' }],
+		},
+	],
 })

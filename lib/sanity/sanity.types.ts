@@ -96,15 +96,17 @@ export type Award = {
 	_updatedAt: string
 	_rev: string
 	name: string
-	linkUrl: string
-	imageUrl: string
-	active: boolean
 	category?: {
 		_ref: string
 		_type: 'reference'
 		_weak?: boolean
 		[internalGroqTypeReferenceTo]?: 'category'
 	}
+	linkUrl: string
+	imageUrl: string
+	active: boolean
+	width?: number
+	height?: number
 }
 
 export type BlockContent = Array<

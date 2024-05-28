@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
 	name: 'award',
-	title: 'Award (Beta)',
+	title: 'Award',
 	icon: ConfettiIcon,
 	type: 'document',
 	fields: [
@@ -12,6 +12,12 @@ export default defineType({
 			title: 'Name',
 			type: 'string',
 			validation: Rule => Rule.required(),
+		}),
+		defineField({
+			name: 'category',
+			title: 'Podcast',
+			type: 'reference',
+			to: { type: 'category' },
 		}),
 		defineField({
 			name: 'linkUrl',
@@ -30,43 +36,23 @@ export default defineType({
 			title: 'Active',
 			description: 'Is this award currently active and visible?',
 			type: 'boolean',
-			initialValue: false,
+			initialValue: () => false,
 			validation: Rule => Rule.required(),
 		}),
 		defineField({
-			name: 'category',
-			title: 'Category',
-			type: 'reference',
-			to: { type: 'category' },
+			name: 'width',
+			title: 'Image Width',
+			description: 'Do not change this unless you know what you are doing',
+			type: 'number',
+			// validation: Rule => Rule.required(),
 		}),
-		// defineField({
-		//   name: 'image',
-		//   title: 'Image',
-		//   type: 'image',
-		//   options: {
-		//     hotspot: true,
-		//   },
-		//   fields: [
-		//     {
-		//       name: 'alt',
-		//       type: 'string',
-		//       title: 'Alternative Text',
-		//     }
-		//   ]
-		// }),
-		// defineField({
-		//   name: 'bio',
-		//   title: 'Bio',
-		//   type: 'array',
-		//   of: [
-		//     {
-		//       title: 'Block',
-		//       type: 'block',
-		//       styles: [{title: 'Normal', value: 'normal'}],
-		//       lists: [],
-		//     },
-		//   ],
-		// }),
+		defineField({
+			name: 'height',
+			title: 'Image Height',
+			description: 'Do not change this unless you know what you are doing',
+			type: 'number',
+			// validation: Rule => Rule.required(),
+		}),
 	],
 	preview: {
 		select: {
