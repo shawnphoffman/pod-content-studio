@@ -30,19 +30,21 @@ export default function GalleryPreview(props: { renderDefault?: any; images?: an
 					overflowX: 'scroll',
 				}}
 			>
-				{images?.map((image: any) => (
-					// eslint-disable-next-line @next/next/no-img-element
-					<img
-						key={image._ref}
-						src={image.asset ? urlFor(image).url() : ''}
-						style={{
-							width: '400px',
-							height: '200px',
-							objectFit: 'cover',
-						}}
-						alt={image.alt}
-					/>
-				))}
+				{images?.map((image: any) => {
+					return (
+						// eslint-disable-next-line @next/next/no-img-element
+						<img
+							key={image._key}
+							src={image.asset ? urlFor(image).url() : ''}
+							style={{
+								width: '400px',
+								height: '200px',
+								objectFit: 'cover',
+							}}
+							alt={image.alt}
+						/>
+					)
+				})}
 			</Flex>
 		</Stack>
 	)
