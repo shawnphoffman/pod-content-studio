@@ -1,7 +1,19 @@
+import { faCircle, faDroplet } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ImageIcon } from '@sanity/icons'
+import { ColorWheelIcon } from '@sanity/icons'
+import { Text } from '@sanity/ui'
 import { defineArrayMember, defineType } from 'sanity'
 
-import { H2Decorator, H3Decorator, H4Decorator, QuoteDecorator } from '@/components/studio/decorators/BlockContent'
+import {
+	ColorBlueDecorator,
+	ColorGreenDecorator,
+	ColorRedDecorator,
+	H2Decorator,
+	H3Decorator,
+	H4Decorator,
+	QuoteDecorator,
+} from '@/components/studio/decorators/BlockContent'
 
 export default defineType({
 	title: 'Block Content',
@@ -28,9 +40,26 @@ export default defineType({
 				decorators: [
 					{ title: 'Bold', value: 'strong' },
 					{ title: 'Italic', value: 'em' },
+					{
+						title: 'Red',
+						value: 'textRed',
+						icon: () => <FontAwesomeIcon className="text-red-500" size="xs" icon={faDroplet} />,
+						component: ColorRedDecorator,
+					},
+					{
+						title: 'Blue',
+						value: 'textBlue',
+						icon: () => <FontAwesomeIcon className="text-blue-500" size="xs" icon={faDroplet} />,
+						component: ColorBlueDecorator,
+					},
+					{
+						title: 'Green',
+						value: 'textGreen',
+						icon: () => <FontAwesomeIcon className="text-green-500" size="xs" icon={faDroplet} />,
+						component: ColorGreenDecorator,
+					},
 					{ title: 'Underline', value: 'underline' },
 					{ title: 'Strike', value: 'strike-through' },
-					// { title: 'Code', value: 'code' },
 				],
 				// Annotations can be any object structure – e.g. a link or a footnote.
 				annotations: [
