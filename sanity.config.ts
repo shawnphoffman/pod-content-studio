@@ -10,8 +10,8 @@ import { structureTool } from 'sanity/structure'
 import ToolMenu from './components/studio/enhancements/ToolMenu'
 // import { presentationTool, defineDocuments } from 'sanity/presentation'
 // import { locate } from '@/sanity/presentation/locate'
-// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from './lib/sanity/sanity.env'
+import { getDefaultDocumentNode, podStructure } from './lib/sanity/sanity.structure'
 import { schema } from './lib/sanity/schema'
 
 // const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3001'
@@ -35,10 +35,14 @@ export default defineConfig({
 		},
 	},
 	plugins: [
-		structureTool(),
-		// Vision is a tool that lets you query your content with GROQ in the studio
-		// https://www.sanity.io/docs/the-vision-plugin
+		//
+		structureTool({
+			structure: podStructure,
+			defaultDocumentNode: getDefaultDocumentNode,
+		}),
+		//
 		visionTool({ defaultApiVersion: apiVersion }),
+		//
 		// presentationTool({
 		// 	// locate,
 		// 	resolve: {
