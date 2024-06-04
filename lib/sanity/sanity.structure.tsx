@@ -64,9 +64,9 @@ export const podStructure: StructureResolver = S =>
 // 	</div>
 // )
 
-export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { documentId, schemaType }) => {
+export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
+	// export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { documentId, schemaType }) => {
 	// if (schemaType === "awards" || documentId === "siteSettings") {
-	console.log({ schemaType, documentId })
 	if (schemaType === 'award') {
 		return S.document().views([
 			S.view.form(),
