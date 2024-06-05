@@ -11,6 +11,23 @@ import PostCoverImage from './PostCoverImage'
 import PostTitle from './PostTitle'
 
 const myPortableTextComponents: Partial<PortableTextReactComponents> = {
+	marks: {
+		textRed: ({ children }) => {
+			return <span className="text-red-500">{children}</span>
+		},
+		textBlue: ({ children }) => {
+			return <span className="text-sky-500">{children}</span>
+		},
+		textGreen: ({ children }) => {
+			return <span className="text-green-500">{children}</span>
+		},
+		underline: ({ children }) => {
+			return <span className="underline underline-offset-2 decoration-red-500">{children}</span>
+		},
+		'strike-through': ({ children }) => {
+			return <span className="line-through decoration-sky-500 decoration-2">{children}</span>
+		},
+	},
 	types: {
 		image: ({ value }) => {
 			return <PostImage {...value} />

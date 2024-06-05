@@ -46,6 +46,10 @@
 	ul,
 	ol {
 		@apply space-y-1 list-inside text-zinc-100;
+
+		::marker {
+			@apply text-yellow-400;
+		}
 	}
 	li ul,
 	li ol {
