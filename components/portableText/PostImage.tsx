@@ -8,12 +8,11 @@ import { client as sanityClient } from '@/lib/sanity/sanity.client'
 
 interface PostImageProps {
 	asset: SanityImageSource
-	alt: string
 	caption?: string
 }
 
 const PostImage = (props: PostImageProps) => {
-	const { asset, alt, caption } = props
+	const { asset, caption } = props
 
 	const imageProps = useNextSanityImage(sanityClient, asset)
 
@@ -22,7 +21,7 @@ const PostImage = (props: PostImageProps) => {
 	return (
 		<figure>
 			<Image
-				alt={alt}
+				alt={''}
 				//
 				sizes="(max-width: 800px) 100vw, 800px"
 				className="mw-full h-auto"
