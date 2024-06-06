@@ -6,6 +6,12 @@ export default defineType({
 	title: 'Podcast',
 	icon: ProjectsIcon,
 	type: 'document',
+	groups: [
+		{
+			name: 'metadata',
+			title: 'Metadata',
+		},
+	],
 	fields: [
 		defineField({
 			name: 'title',
@@ -45,6 +51,19 @@ export default defineType({
 			title: 'Website URL (Dev)',
 			type: 'url',
 			// validation: Rule => Rule.required(),
+		}),
+		//
+		defineField({
+			name: 'applePodcastId',
+			title: 'Apple Podcast ID',
+			type: 'text',
+			group: 'metadata',
+		}),
+		defineField({
+			name: 'spotifyPodcastId',
+			title: 'Spotify Show ID',
+			type: 'text',
+			group: 'metadata',
 		}),
 	],
 	orderings: [
