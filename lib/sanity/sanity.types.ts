@@ -169,6 +169,8 @@ export type Category = {
 	}
 	webUrl?: string
 	webUrlDev?: string
+	applePodcastId?: string
+	spotifyPodcastId?: string
 }
 
 export type Post = {
@@ -419,6 +421,8 @@ export type PODCASTS_QUERYResult = Array<{
 	}
 	webUrl?: string
 	webUrlDev?: string
+	applePodcastId?: string
+	spotifyPodcastId?: string
 }>
 
 // Variable: PODCAST_QUERY
@@ -443,6 +447,8 @@ export type PODCAST_QUERYResult = {
 	}
 	webUrl?: string
 	webUrlDev?: string
+	applePodcastId?: string
+	spotifyPodcastId?: string
 } | null
 
 // Variable: AUTHORS_QUERY

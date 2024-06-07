@@ -944,6 +944,20 @@
           "type": "string"
         },
         "optional": true
+      },
+      "applePodcastId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "spotifyPodcastId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },
