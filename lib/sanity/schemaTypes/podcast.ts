@@ -58,12 +58,14 @@ export default defineType({
 		defineField({
 			name: 'applePodcastId',
 			title: 'Apple Podcast ID',
-			type: 'string',
+			description: 'The xxx numbers in the URL like this: `https://podcasts.apple.com/us/podcast/idXXXXXXXXX`',
+			type: 'number',
 			group: 'metadata',
 		}),
 		defineField({
 			name: 'spotifyPodcastId',
 			title: 'Spotify Show ID',
+			description: 'The xxx text in the URL like this: `https://open.spotify.com/show/XXXXXXXXX`',
 			type: 'string',
 			group: 'metadata',
 		}),
