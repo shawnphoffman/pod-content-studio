@@ -7,6 +7,7 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
+import CustomStringInput from './components/studio/decorators/CharacterCount'
 import ToolMenu from './components/studio/enhancements/ToolMenu'
 // import { presentationTool, defineDocuments } from 'sanity/presentation'
 // import { locate } from '@/sanity/presentation/locate'
@@ -32,6 +33,11 @@ export default defineConfig({
 	studio: {
 		components: {
 			toolMenu: ToolMenu,
+		},
+	},
+	form: {
+		components: {
+			input: props => (props.schemaType?.name === 'string' ? <CustomStringInput {...props} /> : props.renderDefault(props)),
 		},
 	},
 	plugins: [
