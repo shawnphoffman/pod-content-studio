@@ -1,6 +1,8 @@
 import { ConfettiIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
+import { AwardParserInput } from '@/components/studio/forms/AwardParserInput'
+
 export default defineType({
 	name: 'award',
 	title: 'Award',
@@ -8,28 +10,10 @@ export default defineType({
 	type: 'document',
 	fields: [
 		defineField({
-			name: 'name',
-			title: 'Name',
-			type: 'string',
-			validation: Rule => Rule.required(),
-		}),
-		defineField({
 			name: 'category',
 			title: 'Podcast',
 			type: 'reference',
 			to: { type: 'category' },
-		}),
-		defineField({
-			name: 'linkUrl',
-			title: 'Link URL',
-			type: 'url',
-			// validation: Rule => Rule.required(),
-		}),
-		defineField({
-			name: 'imageUrl',
-			title: 'Image URL',
-			type: 'url',
-			validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'active',
@@ -40,18 +24,55 @@ export default defineType({
 			validation: Rule => Rule.required(),
 		}),
 		defineField({
+			name: 'rawHtml',
+			title: 'Raw Goodpods HTML',
+			description: 'Paste the HTML from Goodpods here and click "Parse" below to auto-fill the remaining fields',
+			type: 'text',
+		}),
+		defineField({
+			name: 'name',
+			title: 'Name',
+			type: 'text',
+			components: {
+				input: AwardParserInput,
+			},
+		}),
+		defineField({
+			name: 'linkUrl',
+			title: 'Link URL',
+			type: 'url',
+			components: {
+				input: AwardParserInput,
+			},
+		}),
+		defineField({
+			name: 'imageUrl',
+			title: 'Image URL',
+			type: 'url',
+			validation: Rule => Rule.required(),
+			components: {
+				input: AwardParserInput,
+			},
+		}),
+		defineField({
 			name: 'width',
 			title: 'Image Width',
-			description: 'Do not change this unless you know what you are doing',
+			description: 'Do not change this by hand unless you know what you are doing',
 			type: 'number',
 			// validation: Rule => Rule.required(),
+			components: {
+				input: AwardParserInput,
+			},
 		}),
 		defineField({
 			name: 'height',
 			title: 'Image Height',
-			description: 'Do not change this unless you know what you are doing',
+			description: 'Do not change this by hand unless you know what you are doing',
 			type: 'number',
 			// validation: Rule => Rule.required(),
+			components: {
+				input: AwardParserInput,
+			},
 		}),
 	],
 	preview: {
