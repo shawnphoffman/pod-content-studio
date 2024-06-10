@@ -8,6 +8,11 @@ export default defineType({
 	type: 'document',
 	groups: [
 		{
+			name: 'primary',
+			title: 'Primary',
+			default: true,
+		},
+		{
 			name: 'metadata',
 			title: 'Metadata',
 		},
@@ -18,12 +23,8 @@ export default defineType({
 			title: 'Title',
 			type: 'string',
 			validation: Rule => Rule.required(),
+			group: 'primary',
 		}),
-		// defineField({
-		// 	name: 'description',
-		// 	title: 'Description',
-		// 	type: 'text',
-		// }),
 		defineField({
 			name: 'image',
 			title: 'Image',
@@ -38,6 +39,7 @@ export default defineType({
 				// 	title: 'Alternative Text',
 				// },
 			],
+			group: 'primary',
 			validation: Rule => Rule.required(),
 		}),
 		defineField({
@@ -56,13 +58,13 @@ export default defineType({
 		defineField({
 			name: 'applePodcastId',
 			title: 'Apple Podcast ID',
-			type: 'text',
+			type: 'string',
 			group: 'metadata',
 		}),
 		defineField({
 			name: 'spotifyPodcastId',
 			title: 'Spotify Show ID',
-			type: 'text',
+			type: 'string',
 			group: 'metadata',
 		}),
 	],
