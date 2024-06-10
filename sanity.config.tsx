@@ -1,11 +1,10 @@
-/**
- * This configuration is used to for the Sanity Studio that’s mounted on the `/app/studio/[[...index]]/page.tsx` route
- */
-
+import { dashboardTool } from '@sanity/dashboard'
 import { RocketIcon } from '@sanity/icons'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
+import { vercelWidget } from 'sanity-plugin-dashboard-widget-vercel'
+import { media } from 'sanity-plugin-media'
 
 import CustomStringInput from './components/studio/decorators/CharacterCount'
 import ToolMenu from './components/studio/enhancements/ToolMenu'
@@ -66,5 +65,7 @@ export default defineConfig({
 		// 		},
 		// 	},
 		// }),
+		media(),
+		dashboardTool({ widgets: [vercelWidget({ layout: { width: 'full' /* default and reccomended */ } })] }),
 	],
 })

@@ -29,7 +29,7 @@ export const podStructure: StructureResolver = S =>
 			//
 			S.divider(),
 			//
-			...S.documentTypeListItems().filter(listItem => !['siteSettings'].includes(listItem.getId()!)),
+			...S.documentTypeListItems().filter(listItem => !['siteSettings', 'media.tag'].includes(listItem.getId()!)),
 			//
 			S.divider(),
 			//
