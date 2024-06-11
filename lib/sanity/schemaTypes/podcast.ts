@@ -43,6 +43,12 @@ export default defineType({
 			validation: Rule => Rule.required(),
 		}),
 		defineField({
+			name: 'categories',
+			title: 'Authors',
+			type: 'array',
+			of: [{ type: 'reference', to: { type: 'author' } }],
+		}),
+		defineField({
 			name: 'webUrl',
 			title: 'Website URL',
 			type: 'url',
