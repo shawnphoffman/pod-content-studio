@@ -15,7 +15,7 @@ export function EmbedPreview(props: PreviewProps) {
 			try {
 				fetchController.current = new AbortController()
 				const fetchUrl = `https://api.shawn.party/api/open-graph?scrape=${url}`
-				console.log('FETCHING')
+				// console.log('FETCHING')
 				const response = await fetch(fetchUrl, { signal: fetchController.current.signal })
 				if (response.status !== 200) {
 					return
