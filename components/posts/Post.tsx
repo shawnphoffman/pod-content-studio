@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import { PortableText, type PortableTextReactComponents } from '@portabletext/react'
 
 import PostImage from '@/components/portableText/PostImage'
+import UrlEmbed from '@/components/portableText/UrlEmbed'
 import YoutubeEmbed from '@/components/portableText/YoutubeEmbed'
 import { POST_QUERYResult } from '@/lib/sanity/sanity.types'
 
@@ -31,6 +32,10 @@ const myPortableTextComponents: Partial<PortableTextReactComponents> = {
 	types: {
 		image: ({ value }) => {
 			return <PostImage {...value} />
+		},
+		embed: ({ value }) => {
+			const { url } = value
+			return <UrlEmbed url={url} />
 		},
 		youtube: ({ value }) => {
 			const { url } = value

@@ -1,29 +1,51 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Card, Flex, Stack, Text } from '@sanity/ui'
 import type { PreviewProps } from 'sanity'
 
 const descLength = 100
 
 export function EmbedPreview(props: PreviewProps) {
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+	const fetchController = useRef<AbortController | null>(null)
 	const [meta, setMeta] = useState<any>(null)
 	const { title: url } = props
 
 	useEffect(() => {
-		async function fetchMeta() {
+		const fetchMeta = async () => {
 			try {
+				fetchController.current = new AbortController()
 				const fetchUrl = `https://api.shawn.party/api/open-graph?scrape=${url}`
-				const response = await fetch(fetchUrl)
+				console.log('FETCHING')
+				const response = await fetch(fetchUrl, { signal: fetchController.current.signal })
+				if (response.status !== 200) {
+					return
+				}
 				const data = await response.json()
 				setMeta(data)
-				// console.log({ data })
 			} catch (error) {
-				console.error('Error fetching meta', error)
+				// only call dispatch when we know the fetch was not aborted
+				if (!fetchController?.current?.signal?.aborted) {
+					console.error('Error fetching meta', error)
+				}
 			}
 		}
 		if (!url) return
-		const parsedUrl = new URL(url as string)
-		if (parsedUrl) {
-			fetchMeta()
+		try {
+			const parsedUrl = new URL(url as string)
+			if (parsedUrl) {
+				timeoutRef.current = setTimeout(fetchMeta, 3000)
+			}
+		} catch {}
+
+		return () => {
+			if (timeoutRef.current) {
+				// console.log('CLEARING TIMEOUT')
+				clearTimeout(timeoutRef.current)
+			}
+			if (fetchController.current) {
+				// console.log('ABORTING')
+				fetchController.current.abort()
+			}
 		}
 	}, [url])
 
@@ -38,7 +60,7 @@ export function EmbedPreview(props: PreviewProps) {
 					<Text accent weight="bold">
 						{url}
 					</Text>
-					{meta && (
+					{meta ? (
 						<Card border padding={3}>
 							<Flex align={'center'}>
 								{/* eslint-disable-next-line @next/next/no-img-element */}
@@ -58,6 +80,8 @@ export function EmbedPreview(props: PreviewProps) {
 						))} */}
 							</Flex>
 						</Card>
+					) : (
+						<div className="animate-pulse text-lg">Pending...</div>
 					)}
 				</>
 			) : (
