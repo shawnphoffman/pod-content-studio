@@ -5,9 +5,11 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { QueryParams, SanityDocument } from 'next-sanity'
 
+import PostAuthor from '@/components/posts/PostAuthor'
 import PostRow from '@/components/posts/PostRow'
 import { sanityFetch } from '@/lib/sanity/sanity.fetch'
-import { POSTSBYAUTHOR_QUERY } from '@/lib/sanity/sanity.queries'
+import { AUTHOR_QUERY, POSTSBYAUTHOR_QUERY } from '@/lib/sanity/sanity.queries'
+import { AUTHOR_QUERYResult } from '@/lib/sanity/sanity.types'
 
 // export async function generateStaticParams() {
 // 	const posts = await sanityFetch<SanityDocument[]>({
@@ -23,7 +25,8 @@ import { POSTSBYAUTHOR_QUERY } from '@/lib/sanity/sanity.queries'
 
 export default async function Page({ params, searchParams }: { params: QueryParams; searchParams: { name: string } }) {
 	const posts = await sanityFetch<SanityDocument>({ query: POSTSBYAUTHOR_QUERY(params.id), params })
-	if (!posts) {
+	const author = await sanityFetch<AUTHOR_QUERYResult>({ query: AUTHOR_QUERY, params })
+	if (!author) {
 		return notFound()
 	}
 	return (
@@ -33,6 +36,21 @@ export default async function Page({ params, searchParams }: { params: QueryPara
 				<FontAwesomeIcon icon={faLeft} />
 				<span>Back to Authors</span>
 			</Link>
+
+			{author && (
+				<div className="mt-4 flex flex-col gap-2">
+					<h2>Info</h2>
+					<div className="text-xl flex flex-col gap-2">
+						{/* {author.name && (
+							<div className="flex flex-row gap-2">
+								<span className="font-bold text-red-500">Name:</span>
+								<span className="text-sky-400 hover:text-yellow-400">{author.name}</span>
+							</div>
+						)} */}
+						<PostAuthor author={author} />
+					</div>
+				</div>
+			)}
 
 			<div className="mt-4">
 				<h2>Posts</h2>
@@ -62,6 +80,13 @@ export default async function Page({ params, searchParams }: { params: QueryPara
 					</Suspense>
 				</div>
 			</div>
+
+			{author && (
+				<div className="mt-4 flex flex-col gap-2">
+					<h2>Raw</h2>
+					<pre className="text-green-500 text-xs">{JSON.stringify(author, null, 2)}</pre>
+				</div>
+			)}
 		</div>
 	)
 }

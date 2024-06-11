@@ -51,7 +51,7 @@ export const PODCAST_QUERY = groq`*[_type == "category" && _id == $id][0]`
 // const authorFields = ``
 export const AUTHORS_QUERY = groq`*[_type == "author"]`
 
-export const AUTHOR_QUERY = groq`*[_type == "author" && slug.current == $slug][0]`
+export const AUTHOR_QUERY = groq`*[_type == "author" && _id == $id][0]`
 
 // =======================
 // AWARD QUERIES
