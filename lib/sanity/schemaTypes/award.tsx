@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 
 import { AwardParserInput } from '@/components/studio/forms/AwardParserInput'
 
-export default defineType({
+const award = defineType({
 	name: 'award',
 	title: 'Award',
 	icon: ConfettiIcon,
@@ -59,7 +59,6 @@ export default defineType({
 			title: 'Image Width',
 			description: 'Do not change this by hand unless you know what you are doing',
 			type: 'number',
-			// validation: Rule => Rule.required(),
 			components: {
 				input: AwardParserInput,
 			},
@@ -69,7 +68,6 @@ export default defineType({
 			title: 'Image Height',
 			description: 'Do not change this by hand unless you know what you are doing',
 			type: 'number',
-			// validation: Rule => Rule.required(),
 			components: {
 				input: AwardParserInput,
 			},
@@ -83,3 +81,5 @@ export default defineType({
 		},
 	},
 })
+
+export default award

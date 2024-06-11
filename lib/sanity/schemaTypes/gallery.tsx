@@ -1,4 +1,5 @@
-import { ImagesIcon } from '@sanity/icons'
+import { faGalleryThumbnails } from '@awesome.me/kit-50792a5d55/icons/classic/solid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import GalleryPreview from '@/components/studio/GalleryPreview'
 
@@ -6,7 +7,7 @@ const gallery = {
 	name: 'gallery',
 	title: 'Gallery',
 	type: 'object',
-	icon: ImagesIcon,
+	icon: <FontAwesomeIcon icon={faGalleryThumbnails} size="xs" />,
 	fields: [
 		{
 			name: 'images',
@@ -15,13 +16,6 @@ const gallery = {
 			of: [
 				{
 					type: 'image',
-					fields: [
-						// {
-						// 	name: 'alt',
-						// 	title: 'Alt',
-						// 	type: 'string',
-						// },
-					],
 				},
 			],
 		},

@@ -1,5 +1,6 @@
+import { faPodcast } from '@awesome.me/kit-50792a5d55/icons/classic/solid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { dashboardTool } from '@sanity/dashboard'
-import { RocketIcon } from '@sanity/icons'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
@@ -25,7 +26,7 @@ export default defineConfig({
 	basePath: '/studio',
 	title: `Shawn's Podcast Studio`,
 	subtitle: 'Where good content is just out of reach',
-	icon: RocketIcon,
+	icon: () => <FontAwesomeIcon icon={faPodcast} size="xs" />,
 
 	// MISC
 	schema,

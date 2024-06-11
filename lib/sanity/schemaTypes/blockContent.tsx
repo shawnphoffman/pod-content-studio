@@ -1,8 +1,15 @@
-import { faCircle, faDroplet } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
+import {
+	faBold,
+	faImage,
+	faItalic,
+	faLink,
+	faListOl,
+	faListUl,
+	faStrikethrough,
+	faUnderline,
+} from '@awesome.me/kit-50792a5d55/icons/classic/solid'
+import { faDroplet } from '@awesome.me/kit-50792a5d55/icons/sharp/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ImageIcon } from '@sanity/icons'
-import { ColorWheelIcon } from '@sanity/icons'
-import { Text } from '@sanity/ui'
 import { defineArrayMember, defineType } from 'sanity'
 
 import {
@@ -15,7 +22,7 @@ import {
 	QuoteDecorator,
 } from '@/components/studio/decorators/BlockContent'
 
-export default defineType({
+const blockContent = defineType({
 	title: 'Block Content',
 	name: 'blockContent',
 	type: 'array',
@@ -32,14 +39,30 @@ export default defineType({
 				{ title: 'Quote', value: 'blockquote', component: QuoteDecorator },
 			],
 			lists: [
-				{ title: 'Bullet', value: 'bullet' },
-				{ title: 'Numbered', value: 'number' },
+				{ title: 'Bullet', value: 'bullet', icon: <FontAwesomeIcon icon={faListUl} size="xs" /> },
+				{ title: 'Numbered', value: 'number', icon: <FontAwesomeIcon icon={faListOl} size="xs" /> },
 			],
 			// Marks let you mark up inline text in the Portable Text Editor
 			marks: {
+				// Annotations can be any object structure – e.g. a link or a footnote.
+				annotations: [
+					{
+						title: '',
+						name: 'link',
+						icon: <FontAwesomeIcon icon={faLink} size="xs" />,
+						type: 'object',
+						fields: [
+							{
+								title: 'URL',
+								name: 'href',
+								type: 'url',
+							},
+						],
+					},
+				],
 				decorators: [
-					{ title: 'Bold', value: 'strong' },
-					{ title: 'Italic', value: 'em' },
+					{ title: 'Bold', value: 'strong', icon: <FontAwesomeIcon icon={faBold} size="xs" /> },
+					{ title: 'Italic', value: 'em', icon: <FontAwesomeIcon icon={faItalic} size="xs" /> },
 					{
 						title: 'Red',
 						value: 'textRed',
@@ -58,37 +81,18 @@ export default defineType({
 						icon: () => <FontAwesomeIcon className="text-green-500" size="xs" icon={faDroplet} />,
 						component: ColorGreenDecorator,
 					},
-					{ title: 'Underline', value: 'underline' },
-					{ title: 'Strike', value: 'strike-through' },
-				],
-				// Annotations can be any object structure – e.g. a link or a footnote.
-				annotations: [
-					{
-						title: 'URL',
-						name: 'link',
-						type: 'object',
-						fields: [
-							{
-								title: 'URL',
-								name: 'href',
-								type: 'url',
-							},
-						],
-					},
+					{ title: 'Underline', value: 'underline', icon: <FontAwesomeIcon icon={faUnderline} size="xs" /> },
+					{ title: 'Strike', value: 'strike-through', icon: <FontAwesomeIcon icon={faStrikethrough} size="xs" /> },
 				],
 			},
 		}),
 		//
 		defineArrayMember({
 			type: 'image',
-			icon: ImageIcon,
+			icon: <FontAwesomeIcon icon={faImage} size="xs" />,
+			title: 'Image',
 			options: { hotspot: true },
 			fields: [
-				// {
-				// 	name: 'alt',
-				// 	type: 'string',
-				// 	title: 'Alternative Text',
-				// },
 				{
 					name: 'caption',
 					type: 'string',
@@ -105,5 +109,11 @@ export default defineType({
 		defineArrayMember({
 			type: 'gallery',
 		}),
+		//
+		defineArrayMember({
+			type: 'embed',
+		}),
 	],
 })
+
+export default blockContent

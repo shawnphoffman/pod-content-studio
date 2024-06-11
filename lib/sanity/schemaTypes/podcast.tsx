@@ -1,7 +1,7 @@
 import { ProjectsIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
-export default defineType({
+const podcast = defineType({
 	name: 'category',
 	title: 'Podcast',
 	icon: ProjectsIcon,
@@ -32,13 +32,6 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-			fields: [
-				// {
-				// 	name: 'alt',
-				// 	type: 'string',
-				// 	title: 'Alternative Text',
-				// },
-			],
 			group: 'primary',
 			validation: Rule => Rule.required(),
 		}),
@@ -52,13 +45,11 @@ export default defineType({
 			name: 'webUrl',
 			title: 'Website URL',
 			type: 'url',
-			// validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'webUrlDev',
 			title: 'Website URL (Dev)',
 			type: 'url',
-			// validation: Rule => Rule.required(),
 		}),
 		//
 		defineField({
@@ -84,3 +75,5 @@ export default defineType({
 		},
 	],
 })
+
+export default podcast

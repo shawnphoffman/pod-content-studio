@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 
 import { ImprovedInput } from '@/components/studio/decorators/ImprovedInput'
 
-export default defineType({
+const post = defineType({
 	name: 'post',
 	title: 'Post',
 	icon: DocumentTextIcon,
@@ -44,13 +44,6 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-			fields: [
-				// {
-				// 	name: 'alt',
-				// 	type: 'string',
-				// 	title: 'Alt Text (descriptive text that explains the meaning and context for vision-impaired users)',
-				// },
-			],
 		}),
 		defineField({
 			name: 'excerpt',
@@ -75,7 +68,6 @@ export default defineType({
 			description: 'What podcasts is this relevant to? If one is not selected, the post will not be visible in the feeds.',
 			type: 'array',
 			of: [{ type: 'reference', to: { type: 'category' } }],
-			// validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'publishedAt',
@@ -97,9 +89,7 @@ export default defineType({
 		},
 		prepare(selection) {
 			const { author, category, categories } = selection
-
 			const subtitle = Object.keys(categories ?? {}).length > 1 ? 'Multiple Pods' : category
-
 			return { ...selection, subtitle: `${subtitle || 'No Pods'} - ${author || ''}` }
 		},
 	},
@@ -112,3 +102,5 @@ export default defineType({
 		},
 	],
 })
+
+export default post

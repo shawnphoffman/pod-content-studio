@@ -1,7 +1,6 @@
 import { Stack, Text } from '@sanity/ui'
 
 export default function CustomStringInput(props) {
-	console.log('CustomStringInput', props)
 	return (
 		<Stack space={2}>
 			{props.renderDefault(props)}
