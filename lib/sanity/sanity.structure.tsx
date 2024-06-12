@@ -2,6 +2,8 @@ import { DefaultDocumentNodeResolver, StructureResolver } from 'sanity/structure
 
 import AuthorPreview from '@/components/studio/AuthorPreview'
 import AwardPreview from '@/components/studio/AwardPreview'
+import PodcastPreview from '@/components/studio/PodcastPreview'
+import PostPreview from '@/components/studio/PostPreview'
 
 export const podStructure: StructureResolver = S =>
 	S.list()
@@ -64,6 +66,12 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaT
 	}
 	if (schemaType === 'author') {
 		views.push(S.view.component(AuthorPreview).title('Preview'))
+	}
+	if (schemaType === 'category') {
+		views.push(S.view.component(PodcastPreview).title('Preview'))
+	}
+	if (schemaType === 'post') {
+		views.push(S.view.component(PostPreview).title('Preview'))
 	}
 
 	return S.document().views([S.view.form(), ...views])
