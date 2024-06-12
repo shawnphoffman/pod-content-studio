@@ -1,7 +1,6 @@
-// import { DocumentTextIcon } from '@sanity/icons'
-
 import { DefaultDocumentNodeResolver, StructureResolver } from 'sanity/structure'
 
+import AuthorPreview from '@/components/studio/AuthorPreview'
 import AwardPreview from '@/components/studio/AwardPreview'
 
 export const podStructure: StructureResolver = S =>
@@ -57,42 +56,15 @@ export const podStructure: StructureResolver = S =>
 				),
 		])
 
-// const JsonPreview = ({ document }) => (
-// 	<div className="text-xs">
-// 		<h1>JSON Data for "{document.displayed.title}"</h1>
-// 		<pre>{JSON.stringify(document.displayed, null, 2)}</pre>
-// 	</div>
-// )
-
 export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
-	// export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { documentId, schemaType }) => {
-	// if (schemaType === "awards" || documentId === "siteSettings") {
-	if (schemaType === 'award') {
-		return S.document().views([
-			S.view.form(),
-			//
-			S.view.component(AwardPreview).title('Preview'),
-		])
-	}
-	return S.document().views([S.view.form()])
-}
+	const views: any[] = []
 
-/*
- // S.listItem()
-			// 	.title('Ignore This')
-			// 	.child(
-			// 		S.list()
-			// 			// Sets a title for our new list
-			// 			.title('Settings Documents')
-			// 			// Add items to the array
-			// 			// Each will pull one of our new singletons
-			// 			.items([
-			// 				S.listItem().title('Metadata').child(S.document().schemaType('siteSettings').documentId('siteSettings')),
-			// 				// S.listItem().title('Site Colors').child(S.document().schemaType('colors').documentId('colors')),
-			// 				// S.listItem().title('Main Navigation').child(S.document().schemaType('navigation').documentId('navigation')),
-			// 			])
-			// 	),
-			// We also need to remove the new singletons from the main list
-			// ...S.documentTypeListItems().filter(listItem => !['siteSettings', 'colors', 'navigation'].includes(listItem.getId())),
-			// ...S.documentTypeListItems().filter(listItem => !['siteSettings'].includes(listItem.getId())),
- */
+	if (schemaType === 'award') {
+		views.push(S.view.component(AwardPreview).title('Preview'))
+	}
+	if (schemaType === 'author') {
+		views.push(S.view.component(AuthorPreview).title('Preview'))
+	}
+
+	return S.document().views([S.view.form(), ...views])
+}
