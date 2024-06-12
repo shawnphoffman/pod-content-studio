@@ -8,11 +8,14 @@ export function EmbedPreview(props: PreviewProps) {
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 	const fetchController = useRef<AbortController | null>(null)
 	const [meta, setMeta] = useState<any>(null)
-	const { title: url } = props
+	const { title: url, subtitle } = props
 
 	useEffect(() => {
 		const fetchMeta = async () => {
 			try {
+				if (url === meta?.url) {
+					return
+				}
 				fetchController.current = new AbortController()
 				const fetchUrl = `https://api.shawn.party/api/open-graph?scrape=${url}`
 				// console.log('FETCHING')
@@ -47,7 +50,7 @@ export function EmbedPreview(props: PreviewProps) {
 				fetchController.current.abort()
 			}
 		}
-	}, [url])
+	}, [meta?.url, url])
 
 	const image = useMemo(() => {
 		return meta?.og?.image || meta?.images[0]?.src
@@ -67,6 +70,11 @@ export function EmbedPreview(props: PreviewProps) {
 								<img className="max-w-36 rounded-xl" src={image} alt="" />
 								{/* <img className="max-w-36 rounded-xl" src={meta.images[0]?.src} alt="" /> */}
 								<Stack space={3} padding={3}>
+									{typeof subtitle === 'string' && (
+										<Text weight="semibold" accent>
+											Override: {subtitle}
+										</Text>
+									)}
 									<Text weight="semibold">{meta.meta.title}</Text>
 									<Text size={1} muted>
 										{meta.meta.description?.length > descLength

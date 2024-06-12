@@ -14,11 +14,17 @@ const embed = defineType({
 		defineField({
 			name: 'url',
 			type: 'url',
-			title: 'URL to embed',
+			title: 'URL to Embed',
+			validation: rule => rule.required(),
+		}),
+		defineField({
+			name: 'overrideTitle',
+			type: 'string',
+			title: 'Title Override',
 		}),
 	],
 	preview: {
-		select: { title: 'url' },
+		select: { title: 'url', subtitle: 'overrideTitle' },
 	},
 	components: {
 		preview: EmbedPreview,
