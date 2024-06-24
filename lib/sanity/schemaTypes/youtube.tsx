@@ -13,7 +13,8 @@ const youtube = defineType({
 		defineField({
 			name: 'url',
 			type: 'url',
-			title: 'YouTube video URL',
+			title: 'YouTube Video URL',
+			description: 'Paste a YouTube video URL here. Example: https://www.youtube.com/watch?v=VIDEO_ID or https://youtu.be/VIDEO_ID',
 		}),
 	],
 	preview: {
