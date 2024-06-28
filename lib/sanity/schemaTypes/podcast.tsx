@@ -67,6 +67,13 @@ const podcast = defineType({
 			group: 'metadata',
 		}),
 	],
+	preview: {
+		select: {
+			title: 'title',
+			media: 'image',
+			subtitle: 'webUrl',
+		},
+	},
 	orderings: [
 		{
 			title: 'Title',
