@@ -30,9 +30,19 @@ const award = defineType({
 			type: 'text',
 		}),
 		defineField({
+			name: 'frequency',
+			title: 'Frequency',
+			description: 'Optional frequency of the award, e.g. "Weekly" or "Monthly"',
+			type: 'text',
+			components: {
+				input: AwardParserInput,
+			},
+		}),
+		defineField({
 			name: 'name',
 			title: 'Name',
 			type: 'text',
+			validation: Rule => Rule.required(),
 			components: {
 				input: AwardParserInput,
 			},
@@ -78,6 +88,11 @@ const award = defineType({
 			title: 'name',
 			subtitle: 'category.title',
 			media: 'category.image',
+			frequency: 'frequency',
+		},
+		prepare(selection) {
+			const { title, frequency } = selection
+			return { ...selection, title: `${frequency ? `(${frequency}) ` : ''}${title || ''}` }
 		},
 	},
 })

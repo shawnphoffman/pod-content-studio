@@ -16,12 +16,29 @@ function extractInfoFromHtml(html: string) {
 	const linkUrl = linkElement?.getAttribute('href') || ''
 	const awardText = textElement?.textContent?.trim() || ''
 
+	const period = linkUrl.match(/[?&]period=([^&#]+)/)
+	let frequency = ''
+	if (period && period[1]) {
+		switch (period[1]) {
+			case 'week':
+				frequency = 'Weekly'
+				break
+			case 'month':
+				frequency = 'Monthly'
+				break
+			case 'alltime':
+				frequency = 'All Time'
+				break
+		}
+	}
+
 	return {
 		imageUrl,
 		imageHeight,
 		imageWidth,
 		linkUrl,
 		awardText,
+		frequency,
 	}
 }
 
@@ -52,6 +69,8 @@ export function AwardParserInput(props: any) {
 			onChange(set(Number(fields.imageHeight || 0)))
 		} else if (elementProps.id === 'width') {
 			onChange(set(Number(fields.imageWidth || 0)))
+		} else if (elementProps.id === 'frequency') {
+			onChange(set(fields.frequency))
 		}
 	}, [elementProps.id, onChange, rawHtml])
 
