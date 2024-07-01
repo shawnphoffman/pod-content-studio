@@ -95,6 +95,13 @@ const award = defineType({
 			return { ...selection, title: `${frequency ? `(${frequency}) ` : ''}${title || ''}` }
 		},
 	},
+	orderings: [
+		{
+			title: 'Podcast',
+			name: 'podcast',
+			by: [{ field: 'category.title', direction: 'asc' }],
+		},
+	],
 })
 
 export default award
