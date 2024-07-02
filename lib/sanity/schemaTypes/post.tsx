@@ -77,6 +77,14 @@ const post = defineType({
 			initialValue: () => new Date().toISOString(),
 			validation: Rule => Rule.required(),
 		}),
+		defineField({
+			name: 'commentsAtUrl',
+			title: 'Comments',
+			description:
+				'The BlueSky post URL to use for a comments section. Currently, this is the at-uri. (e.g. at://shawn.party/app.bsky.feed.post/3kwcoowpcps26)',
+			type: 'string',
+			// validation: Rule => Rule.info('This is not yet implemented.').custom(() => true),
+		}),
 	],
 	//
 	preview: {
