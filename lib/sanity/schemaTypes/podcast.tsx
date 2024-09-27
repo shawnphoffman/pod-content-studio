@@ -66,6 +66,13 @@ const podcast = defineType({
 			type: 'string',
 			group: 'metadata',
 		}),
+		defineField({
+			name: 'banner',
+			title: 'Site Banner',
+			type: 'banner',
+			group: 'primary',
+			// validation: Rule => Rule.required(),
+		}),
 	],
 	preview: {
 		select: {

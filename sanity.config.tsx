@@ -1,12 +1,12 @@
 import { faPodcast } from '@awesome.me/kit-50792a5d55/icons/classic/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { dashboardTool } from '@sanity/dashboard'
+// import { dashboardTool } from '@sanity/dashboard'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
-import { vercelWidget } from 'sanity-plugin-dashboard-widget-vercel'
-import { media } from 'sanity-plugin-media'
 
+// import { vercelWidget } from 'sanity-plugin-dashboard-widget-vercel'
+// import { media } from 'sanity-plugin-media'
 import CustomStringInput from './components/studio/decorators/CharacterCount'
 import ToolMenu from './components/studio/enhancements/ToolMenu'
 // import { presentationTool, defineDocuments } from 'sanity/presentation'
@@ -18,6 +18,11 @@ import { schema } from './lib/sanity/schema'
 // const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3001'
 
 export default defineConfig({
+	beta: {
+		treeArrayEditing: {
+			enabled: true,
+		},
+	},
 	// REQUIRED
 	projectId,
 	dataset,
@@ -66,7 +71,7 @@ export default defineConfig({
 		// 		},
 		// 	},
 		// }),
-		media(),
-		dashboardTool({ widgets: [vercelWidget({ layout: { width: 'full' /* default and reccomended */ } })] }),
+		// media(),
+		// dashboardTool({ widgets: [vercelWidget({ layout: { width: 'full' /* default and reccomended */ } })] }),
 	],
 })
