@@ -18,6 +18,8 @@ export function EmbedPreview(props: PreviewProps) {
 				}
 				fetchController.current = new AbortController()
 				const fetchUrl = `https://api.shawn.party/api/open-graph?scrape=${url}`
+
+				// console.log('fetching meta 2', url)
 				// console.log('FETCHING')
 				const response = await fetch(fetchUrl, { signal: fetchController.current.signal })
 				if (response.status !== 200) {

@@ -11,6 +11,7 @@ type Props = {
 async function UrlEmbed({ url, overrideTitle }: Props) {
 	async function fetchMeta() {
 		try {
+			// console.log('fetching meta', url)
 			const fetchUrl = `https://api.shawn.party/api/open-graph?scrape=${url}`
 			const response = await fetch(fetchUrl)
 			const data = await response.json()
