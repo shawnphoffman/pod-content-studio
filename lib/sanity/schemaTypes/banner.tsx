@@ -13,20 +13,27 @@ const banner = defineType({
 	name: 'banner',
 	type: 'object',
 	title: 'Site Banner',
-	description: 'xxx',
+	description: 'A banner displayed at the top of the podcast website.',
 	icon: () => <FontAwesomeIcon icon={faFlagPennant} size="xs" />,
 	fields: [
 		defineField({
+			name: 'enabled',
+			title: 'Enabled',
+			description: 'Toggle the banner on or off without deleting its content.',
+			type: 'boolean',
+			initialValue: false,
+		}),
+		defineField({
 			name: 'heading',
 			title: 'Heading',
-			description: 'xxx',
+			description: 'The main banner text.',
 			type: 'string',
 			validation: rule => rule.required(),
 		}),
 		defineField({
 			name: 'notes',
 			title: 'Notes',
-			description: 'xxx',
+			description: 'Optional additional details. Supports bold, italic, and links.',
 			type: 'array',
 			of: [
 				defineArrayMember({
@@ -63,13 +70,13 @@ const banner = defineType({
 			name: 'url',
 			type: 'url',
 			title: 'External URL',
-			description: 'xxx',
+			description: 'Optional link — the entire banner becomes clickable.',
 		}),
 		defineField({
 			name: 'level',
 			type: 'string',
 			title: 'Emphasis Level',
-			description: 'xxx',
+			description: 'Controls the visual style of the banner.',
 			validation: rule => rule.required(),
 			options: {
 				list: BANNER_LEVEL.map(({ title, value }) => ({ title, value })),

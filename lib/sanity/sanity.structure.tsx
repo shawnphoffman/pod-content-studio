@@ -28,6 +28,19 @@ export const podStructure: StructureResolver = S =>
 						.child(authorId => S.documentList().title('Posts').filter('_type == "post" && $authorId == author._ref').params({ authorId }))
 				),
 			//
+			S.listItem()
+				.title('Banners by Podcast')
+				.child(
+					S.documentTypeList('category')
+						.title('Banners by Podcast')
+						.child(categoryId =>
+							S.documentList()
+								.title('Banners')
+								.filter('_type == "siteBanner" && $categoryId in podcasts[]._ref')
+								.params({ categoryId })
+						)
+				),
+			//
 			S.divider(),
 			//
 			...S.documentTypeListItems().filter(listItem => !['siteSettings', 'media.tag'].includes(listItem.getId()!)),

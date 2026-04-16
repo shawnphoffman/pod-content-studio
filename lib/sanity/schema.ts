@@ -9,6 +9,7 @@ import embed from './schemaTypes/embed'
 import gallery from './schemaTypes/gallery'
 import podcast from './schemaTypes/podcast'
 import post from './schemaTypes/post'
+import siteBanner from './schemaTypes/siteBanner'
 // import siteSettings from './schemaTypes/siteSettings'
 import youtube from './schemaTypes/youtube'
 
@@ -24,6 +25,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		gallery,
 		embed,
 		bonusEpisode,
+		siteBanner,
 		// siteSettings
 	],
 }
