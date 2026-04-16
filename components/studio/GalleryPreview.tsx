@@ -1,12 +1,11 @@
-import imageUrlBuilder from '@sanity/image-url'
-import type { SanityImageSource } from '@sanity/image-url'
+import { createImageUrlBuilder, type SanityImageSource } from '@sanity/image-url'
 import { Flex, Stack } from '@sanity/ui'
 
 import { client } from '@/lib/sanity/sanity.client'
 
 // import { urlFor } from './image-url-builder'
 
-const builder = imageUrlBuilder(client)
+const builder = createImageUrlBuilder(client)
 
 function urlFor(source: SanityImageSource) {
 	return builder.image(source)

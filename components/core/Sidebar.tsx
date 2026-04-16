@@ -25,10 +25,10 @@ export default function Sidebar() {
 			>
 				<div className="h-full px-3 py-4 overflow-y-auto bg-zinc-50 dark:bg-zinc-800">
 					{/* Title */}
-					<a href="/" className="flex items-center ps-2.5 mb-5 gap-2 dark:text-blue-300">
+					<Link href="/" className="flex items-center ps-2.5 mb-5 gap-2 dark:text-blue-300">
 						<FontAwesomeIcon icon={faShawn} className="text-4xl" />
 						<span className="self-center text-xl font-semibold whitespace-nowrap ">Pod Content</span>
-					</a>
+					</Link>
 					{/* STATIC PAGES */}
 					<ul className="space-y-2 font-medium">
 						<li>
