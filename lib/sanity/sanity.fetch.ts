@@ -15,19 +15,31 @@ import { token } from './sanity.token'
 export async function sanityFetch<QueryResponse>({
 	query,
 	params = {},
-	perspective = draftMode().isEnabled ? 'previewDrafts' : 'published',
+	perspective: perspectiveArg,
 	/**
 	 * Stega embedded Content Source Maps are used by Visual Editing by both the Sanity Presentation Tool and Vercel Visual Editing.
 	 * The Sanity Presentation Tool will enable Draft Mode when loading up the live preview, and we use it as a signal for when to embed source maps.
 	 * When outside of the Sanity Studio we also support the Vercel Toolbar Visual Editing feature, which is only enabled in production when it's a Vercel Preview Deployment.
 	 */
-	stega = perspective === 'previewDrafts' || process.env.VERCEL_ENV === 'preview',
+	stega: stegaArg,
 }: {
 	query: string
 	params?: QueryParams
 	perspective?: Omit<ClientPerspective, 'raw'>
 	stega?: boolean
 }) {
+	let perspective: Omit<ClientPerspective, 'raw'>
+	if (perspectiveArg) {
+		perspective = perspectiveArg
+	} else {
+		try {
+			const draft = await draftMode()
+			perspective = draft.isEnabled ? 'previewDrafts' : 'published'
+		} catch {
+			perspective = 'published'
+		}
+	}
+	const stega = stegaArg ?? (perspective === 'previewDrafts' || process.env.VERCEL_ENV === 'preview')
 	if (perspective === 'previewDrafts') {
 		return client.fetch<QueryResponse>(query, params, {
 			stega,

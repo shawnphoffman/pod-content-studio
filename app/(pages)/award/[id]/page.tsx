@@ -8,8 +8,9 @@ import { sanityFetch } from '@/lib/sanity/sanity.fetch'
 import { AWARD_QUERY } from '@/lib/sanity/sanity.queries'
 import { AWARD_QUERYResult } from '@/lib/sanity/sanity.types'
 
-export default async function Page({ params }: { params: QueryParams }) {
-	const info = await sanityFetch<AWARD_QUERYResult>({ query: AWARD_QUERY, params })
+export default async function Page({ params }: { params: Promise<QueryParams> }) {
+	const resolvedParams = await params
+	const info = await sanityFetch<AWARD_QUERYResult>({ query: AWARD_QUERY, params: resolvedParams })
 	if (!info) {
 		return notFound()
 	}

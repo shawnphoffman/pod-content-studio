@@ -21,8 +21,9 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default async function Page({ params }: { params: QueryParams }) {
-	const post = await sanityFetch<POST_QUERYResult>({ query: POST_QUERY, params })
+export default async function Page({ params }: { params: Promise<QueryParams> }) {
+	const resolvedParams = await params
+	const post = await sanityFetch<POST_QUERYResult>({ query: POST_QUERY, params: resolvedParams })
 	if (!post) {
 		return notFound()
 	}

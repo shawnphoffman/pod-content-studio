@@ -22,15 +22,25 @@ import { PODCAST_QUERYResult } from '@/lib/sanity/sanity.types'
 // 	}))
 // }
 
-export default async function Page({ params, searchParams }: { params: QueryParams; searchParams: { title: string } }) {
-	const infoPromise = sanityFetch<PODCAST_QUERYResult>({ query: PODCAST_QUERY, params })
-	const postsPromise = sanityFetch<SanityDocument>({ query: POSTSBYPOD_QUERY(searchParams.title), params })
+export default async function Page({
+	params,
+	searchParams,
+}: {
+	params: Promise<QueryParams>
+	searchParams: Promise<{ title: string }>
+}) {
+	const [resolvedParams, resolvedSearchParams] = await Promise.all([params, searchParams])
+	const infoPromise = sanityFetch<PODCAST_QUERYResult>({ query: PODCAST_QUERY, params: resolvedParams })
+	const postsPromise = sanityFetch<SanityDocument>({
+		query: POSTSBYPOD_QUERY(resolvedSearchParams.title),
+		params: resolvedParams,
+	})
 
 	const [info, posts] = await Promise.all([infoPromise, postsPromise])
 
 	return (
 		<div>
-			<h1>Podcast: {searchParams.title}</h1>
+			<h1>Podcast: {resolvedSearchParams.title}</h1>
 			<Link href="/podcast" className="flex flex-row gap-2 items-center text-sky-400 hover:text-yellow-400">
 				<FontAwesomeIcon icon={faLeft} />
 				<span>Back to Podcasts</span>

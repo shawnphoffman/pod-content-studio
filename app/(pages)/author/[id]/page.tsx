@@ -23,15 +23,25 @@ import { AUTHOR_QUERYResult } from '@/lib/sanity/sanity.types'
 // 	}))
 // }
 
-export default async function Page({ params, searchParams }: { params: QueryParams; searchParams: { name: string } }) {
-	const posts = await sanityFetch<SanityDocument>({ query: POSTSBYAUTHOR_QUERY(params.id), params })
-	const author = await sanityFetch<AUTHOR_QUERYResult>({ query: AUTHOR_QUERY, params })
+export default async function Page({
+	params,
+	searchParams,
+}: {
+	params: Promise<QueryParams>
+	searchParams: Promise<{ name: string }>
+}) {
+	const [resolvedParams, resolvedSearchParams] = await Promise.all([params, searchParams])
+	const posts = await sanityFetch<SanityDocument>({
+		query: POSTSBYAUTHOR_QUERY(resolvedParams.id),
+		params: resolvedParams,
+	})
+	const author = await sanityFetch<AUTHOR_QUERYResult>({ query: AUTHOR_QUERY, params: resolvedParams })
 	if (!author) {
 		return notFound()
 	}
 	return (
 		<div>
-			<h1>Author: {searchParams.name}</h1>
+			<h1>Author: {resolvedSearchParams.name}</h1>
 			<Link href="/author" className="flex flex-row gap-2 items-center text-sky-400 hover:text-yellow-400">
 				<FontAwesomeIcon icon={faLeft} />
 				<span>Back to Authors</span>

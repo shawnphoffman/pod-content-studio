@@ -18,11 +18,6 @@ import { schema } from './lib/sanity/schema'
 // const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3001'
 
 export default defineConfig({
-	beta: {
-		treeArrayEditing: {
-			enabled: true,
-		},
-	},
 	// REQUIRED
 	projectId,
 	dataset,
