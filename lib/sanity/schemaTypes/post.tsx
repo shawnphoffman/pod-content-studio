@@ -37,7 +37,7 @@ const post = defineType({
 			type: 'reference',
 			to: { type: 'author' },
 			validation: rule => rule.required(),
-			options: { canvasApp: { exclude: true } },
+			options: { canvasApp: { purpose: 'Which person wrote this post; pick from the existing author list.' } },
 		}),
 		defineField({
 			name: 'mainImage',
@@ -74,7 +74,11 @@ const post = defineType({
 			description: 'What podcasts is this relevant to? If one is not selected, the post will not be visible in the feeds.',
 			type: 'array',
 			of: [{ type: 'reference', to: { type: 'category' } }],
-			options: { canvasApp: { exclude: true } },
+			options: {
+				canvasApp: {
+					purpose: 'Which podcast(s) this post should appear on. At least one is required for the post to be visible on a site.',
+				},
+			},
 		}),
 		defineField({
 			name: 'publishedAt',
