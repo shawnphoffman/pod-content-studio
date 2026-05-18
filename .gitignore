@@ -29,6 +29,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# draft-podcast-post skill: downloaded cover images for manual upload
+/.draft-images
+
 # vercel
 .vercel
 
