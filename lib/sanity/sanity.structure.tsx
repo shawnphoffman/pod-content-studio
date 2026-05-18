@@ -5,11 +5,62 @@ import AwardPreview from '@/components/studio/AwardPreview'
 import PodcastPreview from '@/components/studio/PodcastPreview'
 import PostPreview from '@/components/studio/PostPreview'
 
-export const podStructure: StructureResolver = S =>
+// Per-podcast structure: shows only the content tied to one podcast's
+// category id, plus the globally-shared types (authors).
+export function buildPodStructure(podId: string): StructureResolver {
+	return S =>
+		S.list()
+			.title('Content')
+			.items([
+				S.listItem()
+					.title('Posts')
+					.child(
+						S.documentList()
+							.title('Posts')
+							.filter('_type == "post" && $podId in categories[]._ref')
+							.params({ podId })
+					),
+				S.listItem()
+					.title('Bonus episodes')
+					.child(
+						S.documentList()
+							.title('Bonus episodes')
+							.filter('_type == "bonusEpisode" && $podId in categories[]._ref')
+							.params({ podId })
+					),
+				S.listItem()
+					.title('Awards')
+					.child(
+						S.documentList()
+							.title('Awards')
+							.filter('_type == "award" && category._ref == $podId')
+							.params({ podId })
+					),
+				S.listItem()
+					.title('Banners')
+					.child(
+						S.documentList()
+							.title('Banners')
+							.filter('_type == "siteBanner" && $podId in podcasts[]._ref')
+							.params({ podId })
+					),
+				S.divider(),
+				S.listItem()
+					.title('Podcast settings')
+					.child(S.document().documentId(podId).schemaType('category')),
+				S.divider(),
+				// Authors are shared across podcasts, so show the global list.
+				S.documentTypeListItem('author').title('Authors'),
+			])
+}
+
+// Admin (cross-podcast) structure: the original layout that lists every
+// podcast's content grouped by category. Kept for the "All Podcasts"
+// workspace that handles content shared across the network.
+export const adminStructure: StructureResolver = S =>
 	S.list()
 		.title('Content')
 		.items([
-			//
 			S.listItem()
 				.title('Posts by Podcast')
 				.child(
@@ -19,7 +70,6 @@ export const podStructure: StructureResolver = S =>
 							S.documentList().title('Posts').filter('_type == "post" && $categoryId in categories[]._ref').params({ categoryId })
 						)
 				),
-			//
 			S.listItem()
 				.title('Posts by Author')
 				.child(
@@ -27,7 +77,6 @@ export const podStructure: StructureResolver = S =>
 						.title('Posts by Author')
 						.child(authorId => S.documentList().title('Posts').filter('_type == "post" && $authorId == author._ref').params({ authorId }))
 				),
-			//
 			S.listItem()
 				.title('Banners by Podcast')
 				.child(
@@ -40,35 +89,8 @@ export const podStructure: StructureResolver = S =>
 								.params({ categoryId })
 						)
 				),
-			//
 			S.divider(),
-			//
 			...S.documentTypeListItems().filter(listItem => !['siteSettings', 'media.tag'].includes(listItem.getId()!)),
-			//
-			S.divider(),
-			//
-			S.listItem()
-				.title('Test')
-				.child(
-					S.documentTypeList('category')
-						.title('Content by Podcast')
-						.child(categoryId =>
-							S.list()
-								.title('Content by Podcast')
-								.items([
-									S.listItem()
-										.title('Posts')
-										.child(
-											S.documentList().title('Posts').filter('_type == "post" && $categoryId in categories[]._ref').params({ categoryId })
-										),
-									S.listItem()
-										.title('Awards')
-										.child(
-											S.documentList().title('Awards').filter('_type == "award" && category._ref == $categoryId').params({ categoryId })
-										),
-								])
-						)
-				),
 		])
 
 export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
