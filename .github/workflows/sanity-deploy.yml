@@ -1,0 +1,43 @@
+name: Deploy Sanity Studio
+
+# Re-deploys the hosted studio at shawnpod.sanity.studio whenever
+# something that affects the schema, config, or studio components lands
+# on main. Canvas reads the schema from there, so without this step
+# Canvas falls behind whatever you most recently shipped to Vercel.
+#
+# Manual trigger is also available from the Actions tab for ad-hoc
+# redeploys.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sanity.config.tsx'
+      - 'sanity.cli.ts'
+      - 'lib/sanity/**'
+      - 'components/studio/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - name: Configure FontAwesome registry auth
+        env:
+          FA_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
+        run: |
+          echo "@awesome.me:registry=https://npm.fontawesome.com/" >> ~/.npmrc
+          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> ~/.npmrc
+          echo "//npm.fontawesome.com/:_authToken=${FA_TOKEN}" >> ~/.npmrc
+      - run: yarn install --frozen-lockfile
+      - name: Deploy studio to sanity.studio
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: yarn sanity deploy
