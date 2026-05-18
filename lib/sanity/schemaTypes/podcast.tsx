@@ -68,6 +68,13 @@ const podcast = defineType({
 			group: 'metadata',
 		}),
 		defineField({
+			name: 'goodpodsUrl',
+			title: 'Goodpods URL',
+			description: 'Full URL to the podcast on goodpods.com. Used by the awards sync job.',
+			type: 'url',
+			group: 'metadata',
+		}),
+		defineField({
 			name: 'banner',
 			title: 'Site Banner',
 			type: 'banner',
