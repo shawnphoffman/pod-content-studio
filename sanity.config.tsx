@@ -3,19 +3,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { dashboardTool } from '@sanity/dashboard'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
+import { defineDocuments, presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 
 // import { vercelWidget } from 'sanity-plugin-dashboard-widget-vercel'
 // import { media } from 'sanity-plugin-media'
 import CustomStringInput from './components/studio/decorators/CharacterCount'
 import ToolMenu from './components/studio/enhancements/ToolMenu'
-// import { presentationTool, defineDocuments } from 'sanity/presentation'
-// import { locate } from '@/sanity/presentation/locate'
+import { locate } from './lib/sanity/presentation/locate'
 import { apiVersion, dataset, projectId } from './lib/sanity/sanity.env'
 import { getDefaultDocumentNode, podStructure } from './lib/sanity/sanity.structure'
 import { schema } from './lib/sanity/schema'
 
-// const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3001'
+// Per-site preview URL is picked from env at studio build/deploy time. To
+// preview a different site, set SANITY_STUDIO_PREVIEW_URL to that site's
+// origin (e.g. https://scruffypod.com) and redeploy the studio. The
+// site-side /api/draft/enable route validates the preview secret so the
+// editor can't bypass via a guessed URL.
+const PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3001'
 
 export default defineConfig({
 	// REQUIRED
@@ -49,23 +54,23 @@ export default defineConfig({
 		//
 		visionTool({ defaultApiVersion: apiVersion }),
 		//
-		// presentationTool({
-		// 	// locate,
-		// 	resolve: {
-		// 		mainDocuments: defineDocuments([
-		// 			{
-		// 				route: '/:slug',
-		// 				filter: `_type == "post" && slug.current == $slug`,
-		// 			},
-		// 		]),
-		// 	},
-		// 	// previewUrl: SANITY_STUDIO_PREVIEW_URL,
-		// 	previewUrl: {
-		// 		draftMode: {
-		// 			enable: '/api/draft',
-		// 		},
-		// 	},
-		// }),
+		presentationTool({
+			locate,
+			resolve: {
+				mainDocuments: defineDocuments([
+					{
+						route: '/updates/:slug',
+						filter: `_type == "post" && slug.current == $slug`,
+					},
+				]),
+			},
+			previewUrl: {
+				origin: PREVIEW_URL,
+				draftMode: {
+					enable: '/api/draft/enable',
+				},
+			},
+		}),
 		// media(),
 		// dashboardTool({ widgets: [vercelWidget({ layout: { width: 'full' /* default and reccomended */ } })] }),
 	],
