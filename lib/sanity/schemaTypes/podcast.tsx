@@ -6,6 +6,7 @@ const podcast = defineType({
 	title: 'Podcast',
 	icon: ProjectsIcon,
 	type: 'document',
+	options: { canvasApp: { exclude: true } },
 	groups: [
 		{
 			name: 'primary',

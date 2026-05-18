@@ -14,6 +14,7 @@ const siteBanner = defineType({
 	type: 'document',
 	title: 'Site Banner',
 	icon: () => <FontAwesomeIcon icon={faFlagPennant} size="xs" />,
+	options: { canvasApp: { exclude: true } },
 	fields: [
 		defineField({
 			name: 'enabled',

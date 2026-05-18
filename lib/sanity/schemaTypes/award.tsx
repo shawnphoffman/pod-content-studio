@@ -8,6 +8,7 @@ const award = defineType({
 	title: 'Award',
 	icon: ConfettiIcon,
 	type: 'document',
+	options: { canvasApp: { exclude: true } },
 	fields: [
 		defineField({
 			name: 'category',

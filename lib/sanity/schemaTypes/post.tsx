@@ -15,6 +15,7 @@ const post = defineType({
 			title: 'Title',
 			type: 'string',
 			validation: rule => rule.required(),
+			options: { canvasApp: { purpose: 'Headline of the post; appears on the post page and in feeds.' } },
 		}),
 		defineField({
 			name: 'slug',
@@ -25,6 +26,7 @@ const post = defineType({
 				source: 'title',
 				maxLength: 96,
 				isUnique: (value, context) => context.defaultIsUnique(value, context),
+				canvasApp: { exclude: true },
 			},
 			validation: rule => rule.required(),
 		}),
@@ -35,6 +37,7 @@ const post = defineType({
 			type: 'reference',
 			to: { type: 'author' },
 			validation: rule => rule.required(),
+			options: { canvasApp: { exclude: true } },
 		}),
 		defineField({
 			name: 'mainImage',
@@ -43,6 +46,7 @@ const post = defineType({
 			type: 'image',
 			options: {
 				hotspot: true,
+				canvasApp: { purpose: 'Hero image at the top of the post and in feed thumbnails.' },
 			},
 		}),
 		defineField({
@@ -54,6 +58,7 @@ const post = defineType({
 			components: {
 				input: ImprovedInput,
 			},
+			options: { canvasApp: { purpose: 'Short summary shown in post lists, meta description, and social previews.' } },
 		}),
 		defineField({
 			name: 'body',
@@ -61,6 +66,7 @@ const post = defineType({
 			description: 'This is the main content of the post.',
 			type: 'blockContent',
 			validation: Rule => Rule.required(),
+			options: { canvasApp: { purpose: 'Main written content of the post.' } },
 		}),
 		defineField({
 			name: 'categories',
@@ -68,6 +74,7 @@ const post = defineType({
 			description: 'What podcasts is this relevant to? If one is not selected, the post will not be visible in the feeds.',
 			type: 'array',
 			of: [{ type: 'reference', to: { type: 'category' } }],
+			options: { canvasApp: { exclude: true } },
 		}),
 		defineField({
 			name: 'publishedAt',
@@ -76,6 +83,7 @@ const post = defineType({
 			type: 'datetime',
 			initialValue: () => new Date().toISOString(),
 			validation: Rule => Rule.required(),
+			options: { canvasApp: { exclude: true } },
 		}),
 		defineField({
 			name: 'commentsAtUrl',
@@ -84,6 +92,7 @@ const post = defineType({
 				'The BlueSky post URL to use for a comments section. Currently, this is the at-uri. (e.g. at://shawn.party/app.bsky.feed.post/3kwcoowpcps26)',
 			type: 'string',
 			// validation: Rule => Rule.info('This is not yet implemented.').custom(() => true),
+			options: { canvasApp: { exclude: true } },
 		}),
 	],
 	//

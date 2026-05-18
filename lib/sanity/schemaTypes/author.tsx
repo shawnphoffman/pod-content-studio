@@ -12,6 +12,7 @@ const author = defineType({
 			title: 'Name',
 			type: 'string',
 			validation: rule => rule.required().max(50),
+			options: { canvasApp: { purpose: 'Display name shown on posts written by this author.' } },
 		}),
 		defineField({
 			name: 'image',
@@ -19,6 +20,7 @@ const author = defineType({
 			type: 'image',
 			options: {
 				hotspot: true,
+				canvasApp: { purpose: 'Headshot or avatar for this author.' },
 			},
 			validation: rule => rule.required(),
 		}),

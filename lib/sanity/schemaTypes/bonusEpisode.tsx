@@ -24,12 +24,14 @@ const bonusEpisode = defineType({
 			description: 'This is not used for anything besides organization.',
 			type: 'string',
 			validation: rule => rule.required().max(50),
+			options: { canvasApp: { purpose: 'Internal title for organizing the bonus episode in the studio.' } },
 		}),
 		defineField({
 			name: 'episodeEmbed',
 			type: 'embed',
 			title: 'Episode Embed',
 			description: 'xxx',
+			options: { canvasApp: { purpose: 'External embed URL for the bonus episode audio/video.' } },
 		}),
 		defineField({
 			name: 'publishedAt',
@@ -38,6 +40,7 @@ const bonusEpisode = defineType({
 			type: 'datetime',
 			initialValue: () => new Date().toISOString(),
 			validation: Rule => Rule.required(),
+			options: { canvasApp: { exclude: true } },
 		}),
 		defineField({
 			name: 'categories',
@@ -45,6 +48,7 @@ const bonusEpisode = defineType({
 			description: 'What podcasts is this relevant to? If one is not selected, the post will not be visible in the feeds.',
 			type: 'array',
 			of: [{ type: 'reference', to: { type: 'category' } }],
+			options: { canvasApp: { exclude: true } },
 		}),
 	],
 	preview: {
