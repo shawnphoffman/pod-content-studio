@@ -6,10 +6,31 @@
  * projectId is hardcoded here. It's a public identifier - safe to commit.
  * dataset can still come from env so the same studio code can target
  * different datasets in CI.
+ *
+ * The `vite` override mirrors the `@/*` path alias from tsconfig.json so
+ * `sanity deploy` / `sanity build` can resolve imports the same way
+ * Next.js does at runtime.
  */
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import { defineCliConfig } from 'sanity/cli'
 
 const projectId = 'uc06juhv'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
-export default defineCliConfig({ api: { projectId, dataset } })
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+export default defineCliConfig({
+	api: { projectId, dataset },
+	vite: config => ({
+		...config,
+		resolve: {
+			...config.resolve,
+			alias: {
+				...config.resolve?.alias,
+				'@': __dirname,
+			},
+		},
+	}),
+})
