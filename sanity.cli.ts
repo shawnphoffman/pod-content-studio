@@ -23,6 +23,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineCliConfig({
 	api: { projectId, dataset },
+	deployment: {
+		appId: 'wthotr5fa1nbpwynvvtohmd8',
+	},
 	vite: config => ({
 		...config,
 		resolve: {
