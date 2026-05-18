@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "schema": "sanity schema extract --enforce-required-fields --path ./lib/sanity/sanity.schema.json",
     "types": "sanity typegen generate --config-path ./sanity-typegen.json",
     "typecheck": "tsc --pretty --noEmit"
@@ -41,8 +41,6 @@
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
-    "@shawnphoffman/eslint-config": "^1.0.4",
-    "@shawnphoffman/prettier-config": "^1.0.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "@tailwindcss/typography": "^0.5.16",
@@ -50,7 +48,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
-    "eslint": "^8",
+    "eslint": "^9",
     "eslint-config-next": "^16",
     "eslint-plugin-react": "^7.37.5",
     "postcss": "^8.5.3",
@@ -69,6 +67,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "prettier": "@shawnphoffman/prettier-config"
+  }
 }
