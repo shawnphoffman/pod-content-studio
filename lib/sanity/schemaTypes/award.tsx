@@ -24,11 +24,57 @@ const award = defineType({
 			initialValue: () => false,
 			validation: Rule => Rule.required(),
 		}),
+		// Auto-sync support fields. `source` tells the sync job which records
+		// it owns; manual records are never touched. `externalId` is what the
+		// sync upserts by - for Goodpods this is the leaderboard_id. `expiresAt`
+		// gates visibility on the site; `lastSeenAt` is bookkeeping for the
+		// sync job to recompute expiresAt without overwriting manual edits.
+		defineField({
+			name: 'source',
+			title: 'Source',
+			description: 'Where this award came from. Auto-synced awards are owned by the sync job and should not be edited by hand.',
+			type: 'string',
+			options: {
+				list: [
+					{ title: 'Manual', value: 'manual' },
+					{ title: 'Goodpods (auto-synced)', value: 'goodpods' },
+				],
+				layout: 'radio',
+				canvasApp: { exclude: true },
+			},
+			initialValue: () => 'manual',
+			validation: rule => rule.required(),
+		}),
+		defineField({
+			name: 'externalId',
+			title: 'External ID',
+			description: 'Identifier from the source system (e.g. Goodpods leaderboard_id). Used by the sync job to upsert without creating duplicates.',
+			type: 'string',
+			readOnly: ({ document }) => document?.source === 'manual',
+			options: { canvasApp: { exclude: true } },
+		}),
+		defineField({
+			name: 'expiresAt',
+			title: 'Expires at',
+			description: 'After this datetime the award is hidden from sites even if active is still true. Leave empty for "never expires" (typical for manual awards).',
+			type: 'datetime',
+			options: { canvasApp: { exclude: true } },
+		}),
+		defineField({
+			name: 'lastSeenAt',
+			title: 'Last seen at',
+			description: 'Most recent sync run that observed this award. Auto-managed.',
+			type: 'datetime',
+			hidden: ({ document }) => document?.source !== 'goodpods',
+			readOnly: true,
+			options: { canvasApp: { exclude: true } },
+		}),
 		defineField({
 			name: 'rawHtml',
 			title: 'Raw Goodpods HTML',
 			description: 'Paste the HTML from Goodpods here and click "Parse" below to auto-fill the remaining fields',
 			type: 'text',
+			hidden: ({ document }) => document?.source === 'goodpods',
 		}),
 		defineField({
 			name: 'frequency',
@@ -90,10 +136,13 @@ const award = defineType({
 			subtitle: 'category.title',
 			media: 'category.image',
 			frequency: 'frequency',
+			source: 'source',
 		},
 		prepare(selection) {
-			const { title, frequency } = selection
-			return { ...selection, title: `${frequency ? `(${frequency}) ` : ''}${title || ''}` }
+			const { title, frequency, source } = selection
+			const prefix = frequency ? `(${frequency}) ` : ''
+			const suffix = source === 'goodpods' ? '  · auto' : ''
+			return { ...selection, title: `${prefix}${title || ''}${suffix}` }
 		},
 	},
 	orderings: [
