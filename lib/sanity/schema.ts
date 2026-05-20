@@ -9,6 +9,9 @@ import embed from './schemaTypes/embed'
 import gallery from './schemaTypes/gallery'
 import podcast from './schemaTypes/podcast'
 import post from './schemaTypes/post'
+import prediction from './schemaTypes/prediction'
+import predictionGuess from './schemaTypes/predictionGuess'
+import predictionsMarker from './schemaTypes/predictionsMarker'
 import siteBanner from './schemaTypes/siteBanner'
 // import siteSettings from './schemaTypes/siteSettings'
 import youtube from './schemaTypes/youtube'
@@ -26,6 +29,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		embed,
 		bonusEpisode,
 		siteBanner,
+		predictionGuess,
+		prediction,
+		predictionsMarker,
 		// siteSettings
 	],
 }

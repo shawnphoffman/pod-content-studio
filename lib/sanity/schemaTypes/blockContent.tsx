@@ -113,6 +113,10 @@ const blockContent = defineType({
 		defineArrayMember({
 			type: 'embed',
 		}),
+		//
+		defineArrayMember({
+			type: 'predictionsMarker',
+		}),
 	],
 })
 
