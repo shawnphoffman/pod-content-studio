@@ -2,6 +2,7 @@ import { DocumentTextIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 import { ImprovedInput } from '@/components/studio/decorators/ImprovedInput'
+import { PredictionsImportInput } from '@/components/studio/forms/PredictionsImportInput'
 
 const post = defineType({
 	name: 'post',
@@ -95,6 +96,7 @@ const post = defineType({
 			description: 'Structured true/false predictions for prediction-show posts. Leave empty on non-prediction posts.',
 			type: 'array',
 			of: [{ type: 'prediction' }],
+			components: { input: PredictionsImportInput },
 			options: { canvasApp: { purpose: 'List of true/false predictions made on this post, each with its guesses and actual outcome.' } },
 		}),
 		defineField({
