@@ -90,6 +90,14 @@ const post = defineType({
 			options: { canvasApp: { exclude: true } },
 		}),
 		defineField({
+			name: 'predictions',
+			title: 'Predictions',
+			description: 'Structured true/false predictions for prediction-show posts. Leave empty on non-prediction posts.',
+			type: 'array',
+			of: [{ type: 'prediction' }],
+			options: { canvasApp: { purpose: 'List of true/false predictions made on this post, each with its guesses and actual outcome.' } },
+		}),
+		defineField({
 			name: 'commentsAtUrl',
 			title: 'Comments',
 			description:

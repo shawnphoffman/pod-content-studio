@@ -29,42 +29,46 @@ type PodcastWorkspace = {
 	previewOrigin: string
 }
 
+// Per-workspace previewOrigin override via env (e.g.
+// NEXT_PUBLIC_PREVIEW_ORIGIN_JUSTSHILLIN=http://localhost:3001).
+// References must be literal so Next/Webpack inlines them into the
+// client bundle - dynamic key lookup does NOT get substituted.
 const PODCAST_WORKSPACES: PodcastWorkspace[] = [
 	{
 		name: 'scruffy',
 		title: `Scruffy Lookin' Podcasters`,
 		podId: '79aa2892-e3ca-4ef0-869f-ef36846b241b',
-		previewOrigin: 'https://scruffypod.com',
+		previewOrigin: process.env.NEXT_PUBLIC_PREVIEW_ORIGIN_SCRUFFY || 'https://scruffypod.com',
 	},
 	{
 		name: 'jammed',
 		title: 'Jammed Transmissions',
 		podId: '7c28ad82-6f13-437e-8af5-c8285ac2269f',
-		previewOrigin: 'https://jammedtransmissions.com',
+		previewOrigin: process.env.NEXT_PUBLIC_PREVIEW_ORIGIN_JAMMED || 'https://jammedtransmissions.com',
 	},
 	{
 		name: 'justshillin',
 		title: 'Just Shillin',
 		podId: '2e803c28-4870-46c7-90d3-70520ec90af8',
-		previewOrigin: 'https://justshillin.com',
+		previewOrigin: process.env.NEXT_PUBLIC_PREVIEW_ORIGIN_JUSTSHILLIN || 'https://justshillin.com',
 	},
 	{
 		name: 'blueharvest',
 		title: 'Blue Harvest',
 		podId: '6c03379a-0584-4e22-9fd2-12525f75e6af',
-		previewOrigin: 'https://blueharvest.rocks',
+		previewOrigin: process.env.NEXT_PUBLIC_PREVIEW_ORIGIN_BLUEHARVEST || 'https://blueharvest.rocks',
 	},
 	{
 		name: 'bluey',
 		title: 'Dinner with the Heelers',
 		podId: '386d4bf9-2128-40ae-bdae-22e23696f5bb',
-		previewOrigin: 'https://blueypodcast.com',
+		previewOrigin: process.env.NEXT_PUBLIC_PREVIEW_ORIGIN_BLUEY || 'https://blueypodcast.com',
 	},
 	{
 		name: 'mwf',
 		title: 'My Weird Foot',
 		podId: '33a22e16-f2c4-437d-b5db-47ad708d6442',
-		previewOrigin: 'https://myweirdfoot.com',
+		previewOrigin: process.env.NEXT_PUBLIC_PREVIEW_ORIGIN_MWF || 'https://myweirdfoot.com',
 	},
 ]
 
